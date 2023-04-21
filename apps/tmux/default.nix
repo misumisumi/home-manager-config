@@ -1,14 +1,83 @@
 /*
-  tmux (terminal multiplexer) conf
+tmux (terminal multiplexer) conf
 */
-{ pkgs, ... }:
-let
-  tmux-conf-local = ''
-  '';
-in
 {
-  home.packages = with pkgs; [ xsel bc ];
-  programs = {
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [xsel bc];
+  programs = with lib; {
+    fzf = {
+      tmux = {
+        enableShellIntegration = true;
+        shellIntegrationOptions = [
+          "-p"
+          "-w 80%"
+          "-h 70%"
+        ];
+      };
+    };
+    zsh = {
+      prezto = {
+        tmux = {
+          autoStartLocal = true;
+          autoStartRemote = true;
+          defaultSessionName = "WS0";
+          itermIntegration = true;
+        };
+      };
+      initExtraFirst = mkOrder 800 ''
+        auto start tmux
+        if [[ ! -n $TMUX ]]; then
+          tmux start-server
+          if ! tmux list-session 2> /dev/null; then
+            tmux new-session -s "WS0"
+          else
+            is_attach=""
+            tmux list-sessions | while read line; do
+              if [[ $(echo $line | grep "attached") == "" ]]; then
+                is_attach=$(echo $line | awk -F':' '{print $1}')
+                echo $is_attach
+                break
+              fi
+            done
+            if [[ ! $is_attach ]]; then
+              tmux new-session
+            else
+              tmux attach-session -t $is_attach
+            fi
+          fi
+          exit
+        fi
+      '';
+    };
+    bash = {
+      initExtra = mkOrder 800 ''
+        auto start tmux
+        if [[ ! -n $TMUX ]]; then
+          tmux start-server
+          if ! tmux list-session 2> /dev/null; then
+            tmux new-session -s "WS0"
+          else
+            is_attach=""
+            tmux list-sessions | while read line; do
+              if [[ $(echo $line | grep "attached") == "" ]]; then
+                is_attach=$(echo $line | awk -F':' '{print $1}')
+                echo $is_attach
+                break
+              fi
+            done
+            if [[ ! $is_attach ]]; then
+              tmux new-session
+            else
+              tmux attach-session -t $is_attach
+            fi
+          fi
+          exit
+        fi
+      '';
+    };
     tmux = {
       enable = true;
 
@@ -98,24 +167,24 @@ in
         set -s focus-events on
         setw -g xterm-keys on
         set -g mouse on
-        
+
         setw -g window-active-style fg='#d8e1e6',bg='#1f292e'
         setw -g window-style fg='#d8e1e6',bg='#080A0c'
-        
+
         set -g display-panes-time 800 # slightly longer pane indicators display time
         set -g display-time 1000      # slightly longer status messages display time
 
         set -g status-interval 10     # redraw status line every 10 seconds
-        
+
         set-hook -g window-pane-changed[0] "set -w main-pane-height 70%"
         set-hook -g window-pane-changed[1] "set -w main-pane-width 75%"
         set-hook -g window-pane-changed[2] "select-layout"
         set-hook -g session-created[2] "select-layout main-horizontal"
-        
+
         # activity
         set -g monitor-activity on
         set -g visual-activity off
-        
+
         # Emulate visual-mode in copy-mode of tmux & copy buffer to xsel
         bind -T copy-mode-vi v send -X begin-selection
         bind -T copy-mode-vi C-v send -X rectangle-toggle
@@ -145,6 +214,5 @@ in
         }
       '';
     };
-
   };
 }

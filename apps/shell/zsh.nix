@@ -5,43 +5,8 @@ When you put zinit in nixpkgs, you need to create a symbolic link manually becau
 You can watch this solution at (machines/home.nix home.activation.myActivationAction)
 */
 {pkgs, ...}: {
-  home.packages = with pkgs; [nix-zsh-completions bat];
-  imports = [../../../modules/zinit.nix];
+  home.packages = with pkgs; [nix-zsh-completions];
   programs = {
-    fzf = {
-      enable = true;
-      enableZshIntegration = false; # Confilict "jeffreytse/zsh-vi-mode" so init my self
-      # ALT+C option
-      changeDirWidgetCommand = "fd -H --type d";
-      changeDirWidgetOptions = [
-        "--preview 'tree -C {} | tree -200'"
-      ];
-      # CTRL+T option
-      fileWidgetCommand = "fd -H --type f";
-      fileWidgetOptions = [
-        "--preview 'bat -n --color=always {}'"
-        "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
-      ];
-      # CTRL+R option
-      historyWidgetOptions = [
-        "--preview 'echo {}' --preview-window up:3:hidden:wrap"
-        "--bind 'ctrl-/:toggle-preview'"
-        "--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
-        "--color header:italic"
-        "--header 'Press CTRL-Y to copy command into clipboard'"
-      ];
-      tmux = {
-        enableShellIntegration = true;
-        shellIntegrationOptions = [
-          "-p"
-          "-w 80%"
-          "-h 70%"
-        ];
-      };
-    };
-    dircolors = {
-      enable = true;
-    };
     zsh = {
       enable = true;
       dotDir = ".config/zsh";
@@ -75,12 +40,6 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
         extraModules = [
           "attr"
         ];
-        # tmux = {
-        #   autoStartLocal = true;
-        #   autoStartRemote = true;
-        #   defaultSessionName = "WS0";
-        #   itermIntegration = true;
-        # };
       };
       zinit = {
         enable = true;
@@ -190,39 +149,12 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
         ZVM_LINE_INIT_MODE = "$ZVM_MODE_INSERT";
         ABBR_QUIET = 1;
       };
-      sessionVariables = {
-        MANPAGER = "less -R --use-color -Dd+c -Du+b";
-      };
-
       # 既にsessionが起動しているかつattach済なら新しくsessionを作成する
       # そうでなればsessionにattachする
       initExtraFirst = ''
         # Calc startup time
         # zmodload zsh/zprof
         # zprof
-
-        # auto start tmux
-        # if [[ ! -n $TMUX ]]; then
-        #   tmux start-server
-        #   if ! tmux list-session 2> /dev/null; then
-        #     tmux new-session -s "WS0"
-        #   else
-        #     is_attach=""
-        #     tmux list-sessions | while read line; do
-        #       if [[ $(echo $line | grep "attached") == "" ]]; then
-        #         is_attach=$(echo $line | awk -F':' '{print $1}')
-        #         echo $is_attach
-        #         break
-        #       fi
-        #     done
-        #     if [[ ! $is_attach ]]; then
-        #       tmux new-session
-        #     else
-        #       tmux attach-session -t $is_attach
-        #     fi
-        #   fi
-        #   exit
-        # fi
       '';
       initExtraBeforeCompInit = ''
         setopt EXTENDED_GLOB         # 拡張GRUBの有効化(^: 否定、~: 除外)
