@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -23,7 +22,5 @@ in {
       };
     };
   };
-  config = mkIf cfg.enable {
-    imports = map (x: ./${x}) cfg.loadApps;
-  };
+  imports = mkIf cfg.enable (map (x: ./${x}) cfg.loadApps);
 }

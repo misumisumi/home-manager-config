@@ -26,8 +26,8 @@ in {
       };
     };
   };
+  imports = mkIf cfg.enable (map (x: ./${x}) cfg.loadApps);
   config = mkIf cfg.enable {
-    imports = map (x: ./${x}) cfg.loadApps;
     home.packges = (import ./apps/pkgs) {
       inherit lib pkgs;
       inherit (cfg) isLarge;
