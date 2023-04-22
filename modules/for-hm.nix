@@ -17,7 +17,7 @@ in {
       ./zinit.nix
     ]
     ++ (import ../apps);
-  config = {
+  config = mkIf cfg.enable {
     home.packages = import ../pkgs/default.nix {
       inherit lib pkgs;
       inherit (cfg) isLarge;
