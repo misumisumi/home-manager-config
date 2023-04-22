@@ -26,7 +26,7 @@ in {
       };
     };
   };
-  imports = mkIf cfg.enable (map (x: ./${x}) cfg.loadApps);
+  imports = [] ++ options cfg.enable (map (x: ./${x}) cfg.loadApps);
   config = mkIf cfg.enable {
     home.packges = (import ./apps/pkgs) {
       inherit lib pkgs;

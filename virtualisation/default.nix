@@ -22,5 +22,5 @@ in {
       };
     };
   };
-  imports = mkIf cfg.enable (map (x: ./${x}) cfg.loadApps);
+  imports = [] ++ optionals cfg.enable (map (x: ./${x}) cfg.loadApps);
 }
