@@ -5,5 +5,5 @@
   ./man
   ./navi
   ./ranger
-  ./shell
 ]
+++ (import ./shell)
