@@ -1,5 +1,6 @@
-{
+{pkgs, ...}: {
   programs = {
+    home.packages = with pkgs; [fd];
     bat = {
       enable = true;
       config = {
