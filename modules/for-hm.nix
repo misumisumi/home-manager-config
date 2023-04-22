@@ -1,7 +1,8 @@
 {
-  imports = [
-    ./zinit.nix
-    ./nixosWallpaper.nix
-    ../apps
-  ];
+  imports =
+    [
+      ./zinit.nix
+      ./nixosWallpaper.nix
+    ]
+    ++ (import ../apps);
 }
