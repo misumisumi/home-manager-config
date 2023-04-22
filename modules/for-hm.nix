@@ -18,7 +18,7 @@ in {
     ]
     ++ (import ../apps);
   config = mkIf cfg.enable {
-    home.packages = import ../pkgs/default.nix {
+    home.packages = import ../apps/pkgs/default.nix {
       inherit lib pkgs;
       inherit (cfg) isLarge;
     };
