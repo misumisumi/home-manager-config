@@ -5,8 +5,6 @@
 }:
 with lib; let
   cfg = config.virtualisation.commonApps;
-  mkImports = ls: f: fold (x: y: x // y) {} (f ls);
-  mapImports = map (x: import ./${x});
 in {
   options.virtualisation = {
     commonApps = {
@@ -24,6 +22,11 @@ in {
       };
     };
   };
-  config =
-    mkIf cfg.enable mkImports mapImports cfg.loadApps;
+  config = mkIf cfg.enable (
+    let
+      mkImports = ls: f: fold (x: y: x // y) {} (f ls);
+      mapImports = map (x: import ./${x});
+    in
+      mkImports mapImports cfg.loadApps
+  );
 }
