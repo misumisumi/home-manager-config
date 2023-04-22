@@ -27,10 +27,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    imports = map (x: import "./${x}") loadApps;
+    imports = map (x: import "./${x}") cfg.loadApps;
     home.packges = (import ./apps/pkgs) {
       inherit lib pkgs;
-      inherit (cfg.commonApps) isLarge;
+      inherit (cfg) isLarge;
     };
   };
 }

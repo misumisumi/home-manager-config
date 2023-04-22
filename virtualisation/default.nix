@@ -24,6 +24,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    imports = map (x: import "./${x}") loadApps;
+    imports = map (x: import "./${x}") cfg.loadApps;
   };
 }
