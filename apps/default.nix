@@ -14,7 +14,7 @@ in {
       '';
       loadApps = mkOption {
         type = types.listOf types.str;
-        default = ["direnv" "fzf" "git" "man" "navi" "ranger" "shell" "shell"];
+        default = ["direnv" "fzf" "git" "man" "navi" "ranger" "shell"];
         example = ["git" "tmux"];
         description = ''
           List of loading modules.
