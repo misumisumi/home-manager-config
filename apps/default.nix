@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.commonApps;
+  mkImports = ls: f: fold (x: y: x // y) {} (f ls);
   mapImports = map (x: import ./${x});
 in {
   options = {
@@ -35,5 +36,5 @@ in {
         inherit (cfg) isLarge;
       };
     }
-    // optionalAttrs (cfg.enable) (mkImports (mapImports cfg.loadApps));
+    // optionalAttrs cfg.enable mkImports mapImports cfg.loadApps;
 }
