@@ -103,7 +103,7 @@ in {
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "intel") "kvm_intel nested=1")
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "amd") "kvm_amd nested=1");
 
-    boot.initrd = optionals (cfg.deviceDomains != null) {
+    boot.initrd = optionalAttrs (cfg.deviceDomains != null) {
       preDeviceCommands = ''
         DEVS="${concatMapStrings (x: x + " ") cfg.deviceDomains}"
         if [ -z "$(ls -A /sys/class/iommu)" ]; then
