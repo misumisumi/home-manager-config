@@ -201,10 +201,10 @@ in {
     environment.etc =
       mkIf cfg.hook.enable
       (attrsets.mapAttrs'
-        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu/" + vm + "/prepare/begin/10-pre-hook.sh") {text = value;})
+        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu.d/" + vm + "/prepare/begin/10-pre-hook.sh") {text = value;})
         cfg.hook.preHook)
       // (attrsets.mapAttrs'
-        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu/" + vm + "/release/end/10-post-hook.sh") {text = value;})
+        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu.d/" + vm + "/release/end/10-post-hook.sh") {text = value;})
         cfg.hook.postHook);
   };
 }
