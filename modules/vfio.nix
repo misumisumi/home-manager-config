@@ -148,7 +148,7 @@ in {
         done
       '';
     };
-    systemd.services = optionalsAttrs (cfg.deviceDomains != null) {
+    systemd.services = optionalAttrs (cfg.deviceDomains != null) {
       vfio-load = {
         description = "Insert vfio-pci driver";
         wantedBy = ["multi-user.target"];
