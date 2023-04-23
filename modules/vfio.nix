@@ -8,13 +8,12 @@
 with lib;
 with types; let
   cfg = config.virtualisation.vfio;
-  strListOrSingleton = coercedTo (either (listOf str) str) toList (listOf str);
   # acscommit = "1ec4cb0753488353e111496a90bdfbe2a074827e";
   hookModules = submodule {
     options = {
       enable = mkEnableOption "Enable hook";
       preHook = mkOption {
-        type = attrsOf strListOrSingleton;
+        type = attrsOf str;
         default = {};
         example = {
           windows = ''
@@ -26,7 +25,7 @@ with types; let
         '';
       };
       postHook = mkOption {
-        type = attrsOf strListOrSingleton;
+        type = attrsOf str;
         default = {};
         example = {
           windows = ''
@@ -199,13 +198,13 @@ in {
     system.activationScripts.libvirt-hooks.text = mkIf cfg.hook.enable ''
       ln -Tfs /etc/libvirt/hooks /var/lib/libvirt/hooks
     '';
-    environment.etc."libvirt/hooks/qemu/" =
+    environment.etc =
       mkIf cfg.hook.enable
       (attrsets.mapAttrs'
-        (vm: value: attrsets.nameValuePair (vm + "/prepare/begin/10-pre-hook.sh") {text = value;})
+        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu/" + vm + "/prepare/begin/10-pre-hook.sh") {text = value;})
         cfg.hook.preHook)
       // (attrsets.mapAttrs'
-        (vm: value: attrsets.nameValuePair (vm + "/release/end/10-post-hook.sh") {text = value;})
+        (vm: value: attrsets.nameValuePair ("libvirt/hooks/qemu/" + vm + "/release/end/10-post-hook.sh") {text = value;})
         cfg.hook.postHook);
   };
 }
