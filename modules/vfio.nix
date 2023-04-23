@@ -8,6 +8,7 @@
 with lib;
 with types; let
   cfg = config.virtualisation.vfio;
+  strListOrSingleton = coercedTo (either (listOf str) str) toList (listOf str);
   # acscommit = "1ec4cb0753488353e111496a90bdfbe2a074827e";
   hookModules = submodule {
     options = {
