@@ -158,6 +158,14 @@ in
             ExecStart = "/run/current-system/sw/bin/modprobe -i vfio-pci";
           };
         };
+        nvidia-driver-load = {
+          description = "Insert vfio-pci driver";
+          wantedBy = ["multi-user.target"];
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = "/run/current-system/sw/bin/modprobe -i vfio-pci";
+          };
+        };
       };
       # boot.initrd.kernelModules =
       #   [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
@@ -190,13 +198,13 @@ in
       system.activationScripts.libvirt-hooks.text = mkIf cfg.hook.enable ''
         ln -Tfs /etc/libvirt/hooks /var/lib/libvirt/hooks
       '';
-      environment.etc.libvirt.hooks.qemu.d =
+      environment.etc."libvirt/hooks/qemu/" =
         mkIf cfg.hook.enable
         (attrsets.mapAttrs'
-          (vm: value: attrsets.nameValuePair (vm + "/prepare/begin/10-pre-hook.sh") value)
+          (vm: value: attrsets.nameValuePair (vm + "/prepare/begin/10-pre-hook.sh") {text = "#!{pkgs.bash}/bin/bash\n" + value;})
           cfg.hook.preHook)
         // (attrsets.mapAttrs'
-          (vm: value: attrsets.nameValuePair (vm + "/release/end/10-post-hook.sh") value)
+          (vm: value: attrsets.nameValuePair (vm + "/release/end/10-post-hook.sh") {text = "#!{pkgs.bash}/bin/bash\n" + value;})
           cfg.hook.postHook);
     };
   }
