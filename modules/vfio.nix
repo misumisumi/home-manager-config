@@ -193,10 +193,10 @@ in
       environment.etc.libvirt.hooks.qemu.d =
         mkIf cfg.hook.enable
         (attrsets.mapAttrs'
-          (vm: value: attrsets.nameValuePair (vm + "prepare/begin/10-pre-hook.sh") value)
+          (vm: value: attrsets.nameValuePair (vm + "/prepare/begin/10-pre-hook.sh") value)
           cfg.hook.preHook)
         // (attrsets.mapAttrs'
-          (vm: value: attrsets.nameValuePair (vm + "release/end/10-post-hook.sh") value)
+          (vm: value: attrsets.nameValuePair (vm + "/release/end/10-post-hook.sh") value)
           cfg.hook.postHook);
     };
   }
