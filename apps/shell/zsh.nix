@@ -53,8 +53,9 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
           '';
         };
         plugins = {
-          "wait'0b' lucid blockf light-mode" = [
-            "depth=1 atload'zle -N starship-line-init && zvm_init' jeffreytse/zsh-vi-mode"
+          "wait'0b' lucid blockf light-mode " = [
+            "atinit'zvm_init'"
+            "depth=1 jeffreytse/zsh-vi-mode"
             "zsh-users/zsh-autosuggestions"
             "zsh-users/zsh-completions"
           ];
