@@ -195,9 +195,11 @@ in {
       }
     ];
 
-    system.activationScripts.libvirt-hooks.text = mkIf cfg.hook.enable ''
-      ln -Tfs /etc/libvirt/hooks /var/lib/libvirt/hooks
-    '';
+    system.activationScripts.libvirt-hooks.text =
+      ""
+      + mkIf cfg.hook.enable ''
+        ln -Tfs /etc/libvirt/hooks /var/lib/libvirt/hooks
+      '';
     environment.etc =
       mkIf cfg.hook.enable
       (attrsets.mapAttrs'
