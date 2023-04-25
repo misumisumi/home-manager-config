@@ -93,6 +93,9 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
               . ${pkgs.fzf}/share/fzf/key-bindings.zsh
             fi
           }
+          function zvm_after_lazy_keybindings() {
+            zvm_define_widget zle-line-init starship-line-init
+          }
           # historyに元のコマンドが残るalias
           function abbr_init() {
             abbr_cmds=(

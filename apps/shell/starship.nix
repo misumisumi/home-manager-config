@@ -10,7 +10,7 @@ with builtins; {
   };
   programs.zsh.initExtraFirst = ''
     # enable transient prompt for starship
-    function zle-line-init starship-line-init {
+    function starship-line-init() {
       emulate -L zsh
 
       [[ $CONTEXT == start ]] || return 0
