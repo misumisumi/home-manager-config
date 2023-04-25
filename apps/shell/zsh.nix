@@ -53,13 +53,13 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
           '';
         };
         plugins = {
-          "wait'0b' lucid blockf light-mode " = [
-            "atinit'zvm_init'"
+          "lucid blockf light-mode " = [
+            "atload'zvm_init'"
             "depth=1 jeffreytse/zsh-vi-mode"
             "zsh-users/zsh-autosuggestions"
             "zsh-users/zsh-completions"
           ];
-          "wait'0c' lucid nocd depth=1 light-mode" = [
+          "wait'0b' lucid nocd depth=1 light-mode" = [
             "atload'abbr_init' olets/zsh-abbr"
           ];
           "wait'!1a' lucid blockf light-mode" = [
@@ -93,9 +93,6 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
               . ${pkgs.fzf}/share/fzf/completion.zsh
               . ${pkgs.fzf}/share/fzf/key-bindings.zsh
             fi
-          }
-          function zvm_after_lazy_keybindings() {
-            zvm_define_widget zle-line-init starship-line-init
           }
           # historyに元のコマンドが残るalias
           function abbr_init() {
@@ -151,6 +148,7 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
         ZVM_VI_VISUAL_ESCAPE_BINDKEY = "jj";
         ZVM_VI_OPPEND_ESCAPE_BINDKEY = "jj";
         ZVM_LINE_INIT_MODE = "$ZVM_MODE_INSERT";
+        ZVM_LAZY_KEYBINDINGS = false;
         ABBR_QUIET = 1;
       };
       # 既にsessionが起動しているかつattach済なら新しくsessionを作成する
