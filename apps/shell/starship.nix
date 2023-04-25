@@ -51,10 +51,10 @@ with builtins; {
       bindkey '^[[F' end-of-line
       bindkey '^[[H' beginning-of-line
       _widgets=$(zle -la)
-      if [[ -n "${_widgets [r down-line-or-beginning-search]}" ]]; then
+      if [[ -n "''${_widgets [r down-line-or-beginning-search]}" ]]; then
         bindkey '^[[B' down-line-or-beginning-search
       fi
-      if [[ -n "${_widgets [r up-line-or-beginning-search]}" ]]; then
+      if [[ -n "''${_widgets [r up-line-or-beginning-search]}" ]]; then
         bindkey '^[[A' up-line-or-beginning-search
       fi
     }
