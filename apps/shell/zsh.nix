@@ -57,7 +57,7 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
             "atload'zvm_init'"
             "depth=1 jeffreytse/zsh-vi-mode"
             "zsh-users/zsh-autosuggestions"
-            "zsh-users/zsh-completions"
+            "marlonrichert/zsh-autocomplete"
           ];
           "wait'0b' lucid nocd depth=1 light-mode" = [
             "atload'abbr_init' olets/zsh-abbr"
