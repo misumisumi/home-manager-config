@@ -11,8 +11,8 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
       enable = true;
       dotDir = ".config/zsh";
 
-      enableAutosuggestions = true;
-      enableCompletion = true;
+      enableAutosuggestions = false;
+      enableCompletion = false;
       autocd = true;
 
       history = {
@@ -81,7 +81,6 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
               "history"
               "directory"
               "spectrum"
-              "completion"
             ];
           };
         };
@@ -176,6 +175,10 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
         	PATH=$(echo "$PATH" | sed 's/\/nix\/store\/[a-zA-Z._0-9-]\+\/bin:\?//g' | sed 's/:$//')
         	export PATH="$PATH"
         fi
+        # For marlonrichert / zsh-autocomplete
+        zstyle ':autocomplete:*' min-delay 0.05
+        bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+        bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
       '';
     };
   };
