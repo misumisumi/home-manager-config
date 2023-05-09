@@ -176,7 +176,7 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
         	export PATH="$PATH"
         fi
         # For marlonrichert / zsh-autocomplete
-        zstyle ':autocomplete:history-search-backward:*' list-lines 16
+        zstyle -e ':autocomplete:history-search-backward:*' list-lines 'reply=$(( LINES / 2 ))'
         zstyle ':autocomplete:*' min-delay 0.05
         bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
         bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
