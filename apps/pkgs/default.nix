@@ -25,6 +25,10 @@ in
       unzip
 
       tree # Show file tree
+      lsof # check port
+
+      convmv #convert encoding
+      jq # JSON processor
 
       bottom # System monitor
       btop # System monitor
@@ -66,11 +70,13 @@ in
             ;
         };
       in [
+        nixos-generators # creating nixos image tool
         graphicsmagick # CLI Image Editor
         pandoc # Document Converter
         playerctl # CLI control media
         sox # CLI Sound Editor
         texlive-combined # LaTex
         lmodern # Font for LaTex
+        liberation_ttf # Fonr for Latex
       ]
     )
