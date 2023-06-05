@@ -148,7 +148,7 @@ in {
       ZINIT_HOME=${cfg.zinitHome}
       ZINIT[HOME_DIR]=''${ZINIT_HOME}
       [[ -r ''${ZINIT_HOME} ]] || mkdir -p ''${ZINIT_HOME}
-      source "${pkgs.zinit}/share/zinit/zinit.zsh &>/dev/null"
+      source "${pkgs.zinit}/share/zinit/zinit.zsh"&>/dev/null
       (( ''${+_comps} )) && _comps[zinit]="${pkgs.zinit}/share/zsh/site-functions/_zinit"
 
       ${optionalString cfg.promptTheme.enable "zinit ${cfg.promptTheme.modifier} for ${cfg.promptTheme.theme}"}
