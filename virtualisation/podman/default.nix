@@ -14,9 +14,9 @@ Podman conf
       backend = "podman";
     };
   };
-  environment.etc."nvidia-container-runtime/config.toml".source = "${pkgs.nvidia-podman}/etc/nvidia-container-runtime/config.toml";
 
   environment = {
+    etc."nvidia-container-runtime/config.toml".source = "${pkgs.nvidia-podman}/etc/nvidia-container-runtime/config.toml";
     systemPackages = with pkgs; [
       buildah
     ];
