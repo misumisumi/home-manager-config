@@ -145,7 +145,7 @@ in {
           exit 0
         fi
         for DEV in $DEVS; do
-          echo "vfio-pci" > "/sys/bus/pci/devices/$DEV/driver_override"
+          echo "vfio-pci" > "/sys/bus/pci/devices/''$DEV/driver_override"
         done
       '';
     };
