@@ -133,7 +133,7 @@ in {
     # boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ]
     boot.kernelModules =
       []
-      ++ (optionals (cfg.deviceDomains == null) ["vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd"])
+      ++ (optionals (cfg.deviceDomains == null) ["vfio_pci" "vfio" "vfio_iommu_type1"])
       ++ (optionals (cfg.enableNestedVirtualization && cfg.IOMMUType == "both") ["kvm_intel nested=1" "kvm_amd nested=1"])
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "intel") "kvm_intel nested=1")
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "amd") "kvm_amd nested=1");
