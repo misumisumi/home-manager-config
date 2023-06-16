@@ -68,6 +68,9 @@ You can watch this solution at (machines/home.nix home.activation.myActivationAc
           "wait'1b' lucid light-mode" = [
             "hlissner/zsh-autopair"
           ];
+          "wait'2a' lucid light-mode" = [
+            "endaaman/lxd-completion-zsh"
+          ];
         };
         prezto = {
           enable = true;

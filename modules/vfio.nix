@@ -117,7 +117,7 @@ in {
         ]
         else ["amd_iommu=on"]
       )
-      ++ (optional (cfg.devices != null)
+      ++ (optional (cfg.devices != [])
         ("vfio-pci.ids=" + builtins.concatStringsSep "," cfg.devices))
       ++ (optionals cfg.applyACSpatch [
         "pcie_acs_override=downstream,multifunction"
@@ -138,18 +138,18 @@ in {
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "intel") "kvm_intel nested=1")
       ++ (optional (cfg.enableNestedVirtualization && cfg.IOMMUType == "amd") "kvm_amd nested=1");
 
-    boot.initrd = optionalAttrs (cfg.deviceDomains != null) {
+    boot.initrd = optionalAttrs (cfg.deviceDomains != []) {
       preDeviceCommands = ''
         DEVS="${concatMapStrings (x: x + " ") cfg.deviceDomains}"
         if [ -z "$(ls -A /sys/class/iommu)" ]; then
           exit 0
         fi
         for DEV in $DEVS; do
-          echo "vfio-pci" > "/sys/bus/pci/devices/$DEV/driver_override"
+          echo "vfio-pci" > "/sys/bus/pci/devices/''$DEV/driver_override"
         done
       '';
     };
-    systemd.services = optionalAttrs (cfg.deviceDomains != null) {
+    systemd.services = optionalAttrs (cfg.deviceDomains != []) {
       vfio-load = {
         description = "Insert vfio-pci driver";
         wantedBy = ["multi-user.target"];

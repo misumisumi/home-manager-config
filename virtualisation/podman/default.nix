@@ -1,9 +1,7 @@
 /*
-  Podman conf
+Podman conf
 */
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   virtualisation = {
     podman = {
       enable = true;
@@ -18,6 +16,7 @@
   };
 
   environment = {
+    etc."nvidia-container-runtime/config.toml".source = "${pkgs.nvidia-podman}/etc/nvidia-container-runtime/config.toml";
     systemPackages = with pkgs; [
       buildah
     ];

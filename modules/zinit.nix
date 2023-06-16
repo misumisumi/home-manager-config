@@ -1,8 +1,13 @@
 # This is home-manager module
 # Prezto modules setting write to programs.zsh.prezto.<modules> or initExtra
-{ config, lib, pkgs, ... }:
-with lib; with types;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+with types; let
   cfg = config.programs.zsh.zinit;
   strListOrSingleton = coercedTo (either (listOf str) str) toList (listOf str);
   toZinitSyntax = x: intersperse " \\\n  " x;
@@ -52,7 +57,7 @@ let
       };
       pmodulesWithModifier = mkOption {
         type = attrsOf strListOrSingleton;
-        default = { };
+        default = {};
         example = {
           completion = ''
             ice \
@@ -84,12 +89,12 @@ let
       };
       promptTheme = mkOption {
         type = zinitPromptModules;
-        default = { };
+        default = {};
         description = "Options to configure prompt theme";
       };
       plugins = mkOption {
         type = attrsOf strListOrSingleton;
-        default = { };
+        default = {};
         example = literalExpression ''
           {
             "<modifier>" = [ "repo_a/plugin_a" "repo_b/plugin_b opts" ];
@@ -102,7 +107,7 @@ let
       };
       prezto = mkOption {
         type = zinitPreztoModules;
-        default = { };
+        default = {};
         description = "Options to configure prezto.";
       };
       initConfig = mkOption {
@@ -121,29 +126,30 @@ let
       };
     };
   };
-in
-{
+in {
   options = {
     programs.zsh = {
       zinit = mkOption {
         type = zinitModules;
-        default = { };
+        default = {};
         description = "Options to configure zinit.";
       };
     };
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ zinit subversion ];
+    home.packages = with pkgs; [zinit subversion];
 
-    programs.zsh.prezto.pmodules = mkIf
-      (cfg.prezto.enable && (cfg.prezto.pmodules != [ ] || cfg.prezto.pmodulesWithModifier))
-      (mkOrder 1200 [ ]);
+    programs.zsh.prezto.pmodules =
+      mkIf
+      (cfg.prezto.enable && (cfg.prezto.pmodules != [] || cfg.prezto.pmodulesWithModifier))
+      (mkOrder 1200 []);
     programs.zsh.initExtraBeforeCompInit = ''
       declare -A ZINIT
       ZINIT_HOME=${cfg.zinitHome}
       ZINIT[HOME_DIR]=''${ZINIT_HOME}
       [[ -r ''${ZINIT_HOME} ]] || mkdir -p ''${ZINIT_HOME}
-      source "${pkgs.zinit}/share/zinit/zinit.zsh"
+      source "${pkgs.zinit}/share/zinit/zinit.zsh"&>/dev/null
+      (( ''${+_comps} )) && _comps[zinit]="${pkgs.zinit}/share/zsh/site-functions/_zinit"
 
       ${optionalString cfg.promptTheme.enable "zinit ${cfg.promptTheme.modifier} for ${cfg.promptTheme.theme}"}
 
@@ -156,20 +162,21 @@ in
       ''}
 
       ${optionalString (cfg.prezto.pmodulesWithModifier != []) ''
-        ${concatStrings (toZinitSyntax 
+        ${concatStrings (
+          toZinitSyntax
           (mapAttrsToList (modifier: modules: "zinit ${modifier} for \\\n ${concatStrings (toPZTM modules)}") cfg.prezto.pmodulesWithModifier)
         )}
       ''}
 
       ${optionalString (cfg.plugins != {}) ''
         ${concatMapStrings (x: x + "\n") (
-            mapAttrsToList (modifier: plugins: "zinit ${modifier} for \\\n  ${
+          mapAttrsToList (modifier: plugins: "zinit ${modifier} for \\\n  ${
             concatStrings (toZinitSyntax plugins)
-            }") cfg.plugins
-          )}
+          }")
+          cfg.plugins
+        )}
       ''}
       ${cfg.extraConfig}
     '';
   };
 }
-
