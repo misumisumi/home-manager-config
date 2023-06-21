@@ -15,12 +15,12 @@
       enable = true;
       enableZshIntegration = false; # Confilict "jeffreytse/zsh-vi-mode" so init my self
       # ALT+C option
-      changeDirWidgetCommand = "fd -H --type d";
+      changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
         "--preview 'tree -C {} | tree -200'"
       ];
       # CTRL+T option
-      fileWidgetCommand = "fd -H --type f";
+      fileWidgetCommand = "fd --type f";
       fileWidgetOptions = [
         "--preview 'bat -n --color=always {}'"
         "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
