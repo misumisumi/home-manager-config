@@ -11,6 +11,10 @@
         theme = "TwoDark";
       };
     };
+    zsh.initExtra = ''
+      bindkey '^[F' fzf-file-widget
+      bindkey '^T' transpose-chars
+    '';
     fzf = {
       enable = true;
       enableZshIntegration = false; # Confilict "jeffreytse/zsh-vi-mode" so init my self
