@@ -12,7 +12,7 @@
       };
     };
     zsh.initExtra = ''
-      bindkey '^[F' fzf-file-widget
+      bindkey '^[t' fzf-file-widget
       bindkey '^T' transpose-chars
     '';
     fzf = {
