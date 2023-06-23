@@ -117,8 +117,6 @@ in {
         ]
         else ["amd_iommu=on"]
       )
-      ++ (optional (cfg.devices != [])
-        ("vfio-pci.ids=" + builtins.concatStringsSep "," cfg.devices))
       ++ (optionals cfg.applyACSpatch [
         "pcie_acs_override=downstream,multifunction"
         "pci=nomsi"
@@ -129,6 +127,10 @@ in {
         "kvm.report_ignored_msrs=0"
       ])
       ++ ["iommu=pt"];
+
+    boot.extraModprobeConfig =
+      optionalString (cfg.devices != [])
+      ("options vfio-pci ids=" + builtins.concatStringsSep "," cfg.devices);
 
     # boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ]
     boot.kernelModules =
