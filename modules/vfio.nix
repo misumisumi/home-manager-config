@@ -130,7 +130,10 @@ in {
 
     boot.extraModprobeConfig =
       optionalString (cfg.devices != [])
-      ("options vfio-pci ids=" + builtins.concatStringsSep "," cfg.devices);
+      ''
+        softdep drm pre: vfio-pci
+        options vfio-pci ids=${builtins.concatStringsSep "," cfg.devices}
+      '';
 
     # boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ]
     boot.kernelModules =
