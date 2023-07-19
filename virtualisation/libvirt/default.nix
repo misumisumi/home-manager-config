@@ -30,7 +30,7 @@ libvirt conf
       qemu = {
         ovmf = {
           enable = true;
-          packages = with pkgs; [pkgs.OVMFFull.fd pkgs.pkgsCross.aarch64-multiplatform.OVMF.fd];
+          packages = with pkgs; [OVMFFull.fd pkgsCross.aarch64-multiplatform.OVMF.fd];
         };
         swtpm.enable = true;
         # verbatimConfig = ''
