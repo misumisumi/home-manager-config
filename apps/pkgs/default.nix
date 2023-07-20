@@ -23,6 +23,7 @@ in
 
       zip # Archives
       unzip
+      p7zip
 
       tree # Show file tree
       lsof # check port
