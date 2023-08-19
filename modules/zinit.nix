@@ -1,10 +1,9 @@
 # This is home-manager module
 # Prezto modules setting write to programs.zsh.prezto.<modules> or initExtra
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 with lib;
 with types; let
@@ -57,7 +56,7 @@ with types; let
       };
       pmodulesWithModifier = mkOption {
         type = attrsOf strListOrSingleton;
-        default = {};
+        default = { };
         example = {
           completion = ''
             ice \
@@ -89,12 +88,12 @@ with types; let
       };
       promptTheme = mkOption {
         type = zinitPromptModules;
-        default = {};
+        default = { };
         description = "Options to configure prompt theme";
       };
       plugins = mkOption {
         type = attrsOf strListOrSingleton;
-        default = {};
+        default = { };
         example = literalExpression ''
           {
             "<modifier>" = [ "repo_a/plugin_a" "repo_b/plugin_b opts" ];
@@ -107,7 +106,7 @@ with types; let
       };
       prezto = mkOption {
         type = zinitPreztoModules;
-        default = {};
+        default = { };
         description = "Options to configure prezto.";
       };
       initConfig = mkOption {
@@ -126,23 +125,24 @@ with types; let
       };
     };
   };
-in {
+in
+{
   options = {
     programs.zsh = {
       zinit = mkOption {
         type = zinitModules;
-        default = {};
+        default = { };
         description = "Options to configure zinit.";
       };
     };
   };
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [zinit subversion];
+    home.packages = with pkgs; [ zinit subversion ];
 
     programs.zsh.prezto.pmodules =
       mkIf
-      (cfg.prezto.enable && (cfg.prezto.pmodules != [] || cfg.prezto.pmodulesWithModifier))
-      (mkOrder 1200 []);
+        (cfg.prezto.enable && (cfg.prezto.pmodules != [ ] || cfg.prezto.pmodulesWithModifier))
+        (mkOrder 1200 [ ]);
     programs.zsh.initExtraBeforeCompInit = ''
       declare -A ZINIT
       ZINIT_HOME=${cfg.zinitHome}

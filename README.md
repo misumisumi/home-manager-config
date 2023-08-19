@@ -4,6 +4,7 @@ This is a common setting for desktop and server.
 Please see the following repository.
 
 # Usage
+
 ```
 {
   description = "Each my machine NixOS System Flake Configuration";
@@ -32,17 +33,9 @@ Please see the following repository.
     flakes,
   }: {
     nixosModules = {
-      for-nixos = import ./modules/for-nixos.nix;
       for-hm = import ./modules/for-hm.nix;
     };
   };
 }
 
-```
-
-## Include Settings
-
-- neovim settings is [here (misumisumi/nvimdots)]()
-
-```
 ```

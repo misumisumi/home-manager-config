@@ -1,11 +1,9 @@
-/*
-Zsh conf
-I have some plugins problem when managin nix, so I manage zsh plugins from zinit.
-When you put zinit in nixpkgs, you need to create a symbolic link manually because the path to completions is different.
-You can watch this solution at (machines/home.nix home.activation.myActivationAction)
-*/
-{pkgs, ...}: {
-  home.packages = with pkgs; [nix-zsh-completions];
+#  Zsh conf
+#  I have some plugins problem when managin nix, so I manage zsh plugins from zinit.
+#  When you put zinit in nixpkgs, you need to create a symbolic link manually because the path to completions is different.
+#  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
+{ pkgs, ... }: {
+  home.packages = with pkgs; [ nix-zsh-completions ];
   programs = {
     zsh = {
       enable = true;

@@ -1,12 +1,8 @@
-/*
-tmux (terminal multiplexer) conf
-*/
-{
-  lib,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }: {
-  home.packages = with pkgs; [xsel bc];
+  home.packages = with pkgs; [ xsel bc ];
   programs = with lib; {
     fzf = {
       tmux = {
