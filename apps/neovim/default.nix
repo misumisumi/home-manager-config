@@ -1,6 +1,8 @@
 # This is need `https://github.com/ayamir/nvimdots`
 { pkgs, ... }:
 {
+  programs.dotnet.dev.enable = true;
+  programs.java.enable = true;
   programs.neovim.nvimdots = {
     enable = true;
     setBuildEnv = true;
