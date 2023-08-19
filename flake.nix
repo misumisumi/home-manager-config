@@ -5,7 +5,9 @@
 
   outputs = inputs: {
     nixosModules = {
-      dotfiles = import ./modules/dotfiles.nix;
+      core = import ./modules/core.nix;
+      extra = import ./modules/extra.nix;
+      tmux = import ./modules/tmux.nix;
     };
   };
 }

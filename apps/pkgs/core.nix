@@ -1,6 +1,4 @@
-{ lib
-, pkgs
-, withExtra ? false
+{ pkgs
 }:
 let
   pythonPkgs = ps:
@@ -8,7 +6,6 @@ let
       numpy
     ];
 in
-with lib;
 with pkgs;
 [
   (python3.withPackages pythonPkgs)
@@ -43,34 +40,3 @@ with pkgs;
   unzip
   zip # Archives
 ]
-++ optionals withExtra (
-  let
-    texlive-combined = pkgs.texlive.combine {
-      # TexLive(Japanese support)
-      inherit
-        (pkgs.texlive)
-        scheme-medium
-        latexmk
-        collection-langjapanese
-        collection-latexextra
-        newtx
-        newtxtt
-        newpx
-        boondox
-        fontaxes
-        tlmgrbasics
-        ;
-    };
-  in
-  [
-    nixos-generators # creating nixos image tool
-    graphicsmagick # CLI Image Editor
-    liberation_ttf # Fonr for Latex
-    lmodern # Font for LaTex
-    pandoc # Document Converter
-    playerctl # CLI control media
-    poppler_utils # A PDF rendering
-    sox # CLI Sound Editor
-    texlive-combined # LaTex
-  ]
-)
