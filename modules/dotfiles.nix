@@ -5,26 +5,26 @@
 , ...
 }:
 with lib; let
-  cfg = config.home.installCommonPkgs;
+  cfg = config.home.setupCommonPkgs;
 in
 {
-  options.home.installCommonPkgs = {
-    enable = mkEnableOption "Install common packages";
-    witExtra = mkEnableOption ''
+  options.home.setupCommonPkgs = {
+    enable = mkEnableOption "Setup common packages";
+    withExtra = mkEnableOption ''
       Setup `direnv`, `editorconfig`, `latexmk`, `navi`, `neovim`, `translate-shell` and some packages.
     '';
     withTmux = mkEnableOption ''
       Use `tmux` as multiplexer.
     '';
   };
-  imports =
-    [
-      ./zinit.nix
-    ]
-    ++ (import ../apps {
-      inherit lib; inherit (cfg) withExtra withTmux;
-    });
   config = mkIf cfg.enable {
+    imports =
+      [
+        ./zinit.nix
+      ]
+      ++ (import ../apps {
+        inherit lib; inherit (cfg) withExtra withTmux;
+      });
     home.packages = import ../apps/pkgs {
       inherit lib pkgs;
       inherit (cfg) withExtra;
