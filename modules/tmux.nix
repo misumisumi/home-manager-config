@@ -1,7 +1,6 @@
+{ pkgs
+, ...
+}:
 {
-  imports =
-    [
-      ../apps/tmux
-    ];
+  imports = [ ./apps/tmux.nix ];
 }
-

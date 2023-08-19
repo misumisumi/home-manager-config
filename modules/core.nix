@@ -4,21 +4,14 @@
 , config
 , ...
 }:
-with lib; let
-  cfg = config.home.setupCore;
-in
 {
-  options.home.setupCore.enable = mkEnableOption "Setup common packages";
   imports =
     [
       ./zinit.nix
-      ./fzf
-      ./git
-      ./man
-      ./ranger
-    ]
-    ++ (import ./shell);
-  config = mkIf cfg.enable {
-    home.packages = pkgs.callPacakges ../apps/pkgs;
-  };
+      ../apps/fzf
+      ../apps/git
+      ../apps/man
+      ../apps/ranger
+    ] ++ (import ../apps/shell);
+  config.home.packages = pkgs.callPackage (import ../apps/pkgs/core.nix) { };
 }
