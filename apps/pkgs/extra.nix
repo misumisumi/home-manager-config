@@ -1,4 +1,22 @@
 { pkgs, ... }:
+let
+  texlive-combined = pkgs.texlive.combine {
+    # TexLive(Japanese support)
+    inherit
+      (pkgs.texlive)
+      scheme-medium
+      latexmk
+      collection-langjapanese
+      collection-latexextra
+      newtx
+      newtxtt
+      newpx
+      boondox
+      fontaxes
+      tlmgrbasics
+      ;
+  };
+in
 with pkgs;[
   nixos-generators # creating nixos image tool
   graphicsmagick # CLI Image Editor
