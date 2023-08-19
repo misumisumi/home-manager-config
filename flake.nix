@@ -1,12 +1,11 @@
 {
-  description = "Each my machine NixOS System Flake Configuration";
+  description = "My common dotfiles";
 
-  inputs = {};
+  inputs = { };
 
   outputs = inputs: {
     nixosModules = {
-      for-nixos = import ./modules/for-nixos.nix;
-      for-hm = import ./modules/for-hm.nix;
+      dotfiles = import ./modules/dotfiles.nix;
     };
   };
 }

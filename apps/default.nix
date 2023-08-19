@@ -1,11 +1,20 @@
+{ lib
+, withExtra ? false
+, withTmux ? false
+}:
+with lib;
 [
-  ./direnv
-  ./editorconfig
   ./fzf
   ./git
-  ./latexmk
   ./man
-  ./navi
   ./ranger
 ]
 ++ (import ./shell)
+++ optionals withExtra [
+  ./direnv
+  ./editorconfig
+  ./latexmk
+  ./navi
+  ./neovim
+]
+++ optional withTmux ./tmux
