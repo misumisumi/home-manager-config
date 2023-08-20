@@ -12,6 +12,7 @@
       ../apps/git
       ../apps/man
       ../apps/ranger
+      ../apps/wezterm
     ] ++ (import ../apps/shell);
   config.home.packages = pkgs.callPackage (import ../apps/pkgs/core.nix) { };
 }
