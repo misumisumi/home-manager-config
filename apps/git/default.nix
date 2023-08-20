@@ -41,7 +41,7 @@ in
     git = {
       enable = true;
       userEmail = "dragon511southern@gmail.com";
-      userName = "Sumi-Sumi";
+      userName = "misumisumi";
       extraConfig = {
         init = {
           defaultBranch = "main";
