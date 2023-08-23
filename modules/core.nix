@@ -11,6 +11,7 @@
       ../apps/fzf
       ../apps/git
       ../apps/man
+      ../apps/neovim
       ../apps/ranger
       ../apps/wezterm
     ] ++ (import ../apps/shell);

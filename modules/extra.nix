@@ -8,7 +8,7 @@
     ../apps/editorconfig
     ../apps/latexmk
     ../apps/navi
-    ../apps/neovim
+    ../apps/translate-shell
   ];
   config.home.packages = pkgs.callPackage (import ../apps/pkgs/extra.nix) { };
 }
