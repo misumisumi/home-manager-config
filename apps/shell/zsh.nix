@@ -4,6 +4,35 @@
 #  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
 { pkgs, ... }: {
   home.packages = with pkgs; [ nix-zsh-completions ];
+  xdg.configFile."zsh/abbreviations".text = ''
+    abbr bud="buildah bud"
+    abbr direal="direnv allow"
+    abbr diren="nix flake new -t github:nix-community/nix-direnv"
+    abbr g="git"
+    abbr ga="git add"
+    abbr gac="git add -A && git commit"
+    abbr gbr="git branch"
+    abbr gc="git commit"
+    abbr gco="git checkout"
+    abbr gdf="git diff"
+    abbr gget="ghq get"
+    abbr ggr="git grep"
+    abbr gl="git log"
+    abbr gpl="git pull"
+    abbr gpu="git push"
+    abbr gst="git status"
+    abbr gsw="git switch"
+    abbr lg="lazygit"
+    abbr nixswitch="sudo nixos-rebuild switch --flake"
+    abbr nixtest="sudo nixos-rebuild test --flake"
+    abbr p="podman"
+    abbr pimgs="podman images"
+    abbr ppl="podman pull"
+    abbr ppld="podman pull docker.io/"
+    abbr pps="podman ps"
+    abbr prun="podman run"
+    abbr venv="source venv/bin/activate"
+  '';
   programs = {
     zsh = {
       enable = true;
