@@ -17,7 +17,6 @@
     extraPackages = with pkgs; [
       deno
       nixpkgs-fmt
-      nixd
     ];
   };
 }
