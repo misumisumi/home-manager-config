@@ -89,8 +89,8 @@ local config = {
     },
     -- color_scheme = "Catppuccin Mocha",
     font = wezterm.font_with_fallback({
-        { family = "UDEV Gothic 35NFLG", weight = "Medium" },
-        { family = "PlemolJP35 Console NFJ", weight = "Medium" },
+        { family = "UDEV Gothic 35LG", weight = "Medium" },
+        { family = "PlemolJP35 Console NF", weight = "Medium" },
         "FiraCode Nerd Font",
     }),
     font_size = 13.0,
