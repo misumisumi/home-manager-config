@@ -20,7 +20,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     local right_edge_background = nil
     local background = color_set.bg_tab
     local foreground = color_set.fg_tab
-
+    local zoomed = ""
+    if tab.active_pane.is_zoomed then
+        zoomed = "[Z] "
+    end
     if tab.is_active then
         if tab.tab_index == (#tabs - 1) then
             edge_background = color_set.bg
@@ -53,7 +56,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
     -- ensure that the titles fit in the available space,
     -- and that we have room for the edges.
-    local title = " " .. tab.tab_index .. " " .. wezterm.truncate_right(tab.active_pane.title, max_width - 5) .. " "
+    local title = " "
+        .. zoomed
+        .. tab.tab_index
+        .. " "
+        .. wezterm.truncate_right(tab.active_pane.title, max_width - 5)
+        .. " "
 
     return {
         { Background = { Color = edge_background } },
@@ -93,7 +101,7 @@ local config = {
         { family = "PlemolJP35 Console NF", weight = "Medium" },
         "FiraCode Nerd Font",
     }),
-    font_size = 13.0,
+    font_size = 11.0,
     enable_scroll_bar = true,
     window_padding = {
         left = 0,
@@ -110,7 +118,7 @@ local config = {
 
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = true,
-    tab_max_width = 32,
+    tab_max_width = 16,
     default_cwd = wezterm.home_dir,
     quick_select_patterns = {
         -- match things that look like sha1 hashes
