@@ -18,10 +18,12 @@ let
   };
 in
 with pkgs;[
-  nixos-generators # creating nixos image tool
+  cloc # A program that counts lines of source code
+  github-cli # GitHub CLI tool
   graphicsmagick # CLI Image Editor
   liberation_ttf # Fonr for Latex
   lmodern # Font for LaTex
+  nixos-generators # creating nixos image tool
   pandoc # Document Converter
   playerctl # CLI control media
   poppler_utils # A PDF rendering
