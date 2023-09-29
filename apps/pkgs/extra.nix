@@ -19,6 +19,7 @@ let
 in
 with pkgs;[
   nixos-generators # creating nixos image tool
+  github-cli # GitHub CLI tool
   graphicsmagick # CLI Image Editor
   liberation_ttf # Fonr for Latex
   lmodern # Font for LaTex
