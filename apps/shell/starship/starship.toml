@@ -137,7 +137,7 @@ style = "bg:terminal_dark"
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 
 [directory]
-read_only = " "
+read_only = " "
 read_only_style = "fg:magenta2 bg:terminal_dark"
 style = "fg:cyan bg:terminal_dark"
 format = '[  $path]($style)[$read_only ]($read_only_style)'
@@ -204,7 +204,7 @@ style = "bg:terminal_dark"
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [meson]
 symbol = "喝 "
@@ -256,7 +256,7 @@ NetBSD = " "
 NixOS = " "
 OpenBSD = " "
 openSUSE = " "
-OracleLinux = " "
+OracleLinux = "󰂹 "
 Pop = " "
 Raspbian = " "
 Redhat = " "
@@ -266,7 +266,7 @@ Solus = "ﴱ "
 SUSE = " "
 Ubuntu = " "
 Unknown = " "
-Windows = " "
+Windows = " "
 
 [package]
 symbol = " "
