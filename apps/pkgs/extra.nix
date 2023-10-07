@@ -22,6 +22,7 @@ with pkgs;[
   nix-prefetch # Prefetch checkers
   nix-prefetch-git
   nvfetcher # Tool of automate nix package updates
+  nixos-generators # creating nixos image tool
 
   ascii-image-converter # Make ascii art
   cloc # A program that counts lines of source code
