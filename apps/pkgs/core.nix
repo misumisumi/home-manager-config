@@ -27,6 +27,7 @@ with pkgs;
   ripgrep # fast grep
   trash-cli # Command Line Interface to FreeDesktop.org Trash
   tree # Show file tree
-  unzip
+  unzip #Archives
+  yq-go # YAML processor
   zip # Archives
 ]
