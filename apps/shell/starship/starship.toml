@@ -12,12 +12,13 @@ $git_status\
 
 right_format = """
 $cmd_duration\
-$python\
 $conda\
 $dart \
 $golang\
+$nix_shell\
 $nodejs\
 $php\
+$python\
 $rust\
 $username\
 $hostname"""
@@ -207,7 +208,7 @@ format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 symbol = "󰍛 "
 
 [meson]
-symbol = "喝 "
+symbol = "⬢ "
 style = "bg:terminal_dark"
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 
@@ -219,6 +220,7 @@ format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 [nix_shell]
 symbol = " "
 style = "bg:terminal_dark"
+heuristic = true
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 
 [nodejs]
@@ -269,12 +271,12 @@ Unknown = " "
 Windows = " "
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 style = "bg:terminal_dark"
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 
 [pijul_channel]
-symbol = "🪺 "
+symbol = " "
 style = "bg:terminal_dark"
 format = '[[ $symbol ($version) ](fg:fg bg:terminal_dark)]($style)'
 

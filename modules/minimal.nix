@@ -9,7 +9,9 @@
       ../apps/git
       ../apps/man
       ../apps/ranger
+      ../apps/wezterm
       ../apps/shell/bash.nix
+      ../apps/shell/starship.nix
     ];
   config.home.packages = pkgs.callPackage (import ../apps/pkgs/core.nix) { };
 }
