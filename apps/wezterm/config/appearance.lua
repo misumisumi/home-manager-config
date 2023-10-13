@@ -21,8 +21,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     local background = color_set.bg_tab
     local foreground = color_set.fg_tab
     local zoomed = ""
+    local extra_pad = 0
     if tab.active_pane.is_zoomed then
         zoomed = "[Z] "
+        extra_pad = 4
     end
     if tab.is_active then
         if tab.tab_index == (#tabs - 1) then
@@ -60,7 +62,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
         .. zoomed
         .. tab.tab_index
         .. " "
-        .. wezterm.truncate_right(tab.active_pane.title, max_width - 5)
+        .. wezterm.truncate_right(tab.active_pane.title, max_width - 5 - extra_pad)
         .. " "
 
     return {
