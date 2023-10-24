@@ -2,41 +2,16 @@
 #  I have some plugins problem when managin nix, so I manage zsh plugins from zinit.
 #  When you put zinit in nixpkgs, you need to create a symbolic link manually because the path to completions is different.
 #  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
-{ pkgs, ... }: {
+{ pkgs, config, ... }:
+let
+  zdotDir = "${config.xdg.configHome}/zsh";
+in
+{
   home.packages = with pkgs; [ nix-zsh-completions ];
-  xdg.configFile."zsh/abbreviations".text = ''
-    abbr bud="buildah bud"
-    abbr direal="direnv allow"
-    abbr diren="nix flake new -t github:nix-community/nix-direnv"
-    abbr g="git"
-    abbr ga="git add"
-    abbr gac="git add -A && git commit"
-    abbr gbr="git branch"
-    abbr gc="git commit"
-    abbr gco="git checkout"
-    abbr gdf="git diff"
-    abbr gget="ghq get"
-    abbr ggr="git grep"
-    abbr gl="git log"
-    abbr gpl="git pull"
-    abbr gpu="git push"
-    abbr gst="git status"
-    abbr gsw="git switch"
-    abbr lg="lazygit"
-    abbr nixswitch="sudo nixos-rebuild switch --flake"
-    abbr nixtest="sudo nixos-rebuild test --flake"
-    abbr p="podman"
-    abbr pimgs="podman images"
-    abbr ppl="podman pull"
-    abbr ppld="podman pull docker.io/"
-    abbr pps="podman ps"
-    abbr prun="podman run"
-    abbr venv="source venv/bin/activate"
-  '';
   programs = {
     zsh = {
       enable = true;
-      dotDir = ".config/zsh";
+      dotDir = zdotDir;
 
       enableAutosuggestions = false;
       enableCompletion = false;
@@ -76,7 +51,7 @@
           modifier = ''
             depth=1 atload'P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
             [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-            source "''${XDG_CONFIG_HOME}/zsh/.p10k.zsh"' light-mode \
+            source "${zdotDir}/.p10k.zsh"' light-mode \
           '';
         };
         plugins = {
@@ -127,8 +102,8 @@
           function abbr_init() {
             abbr_cmds=(
               # virtual env
-              diren="nix flake new -t github:nix-community/nix-direnv"
-              direal="direnv allow"
+              createnv="nix flake new -t github:nix-community/nix-direnv"
+              envall="direnv allow"
               venv='source venv/bin/activate'
               # podman and buildah
               p='podman'
@@ -158,7 +133,7 @@
               nixtest='sudo nixos-rebuild test --flake'
               nixswitch='sudo nixos-rebuild switch --flake'
             )
-            if [[ ''${#abbr_cmds[@]} == $(cat $XDG_CONFIG_HOME/zsh/abbreviations | wc -l) ]]; then
+            if [[ ''${#abbr_cmds[@]} == $(cat ${zdotDir}/abbreviations | wc -l) ]]; then
               abbr load
             else
               for cmd in "''${abbr_cmds[@]}"
@@ -169,9 +144,7 @@
           }
         '';
       };
-      shellAliases = {
-        nix = "noglob nix";
-      };
+      shellAliases = { };
       localVariables = {
         ZVM_VI_INSERT_ESCAPE_BINDKEY = "jj";
         ZVM_VI_VISUAL_ESCAPE_BINDKEY = "jj";
