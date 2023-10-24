@@ -18,7 +18,19 @@ let
   };
 in
 with pkgs;[
+  nix-index # A files database for nixpkgs
+  nix-prefetch # Prefetch checkers
+  nix-prefetch-git
+  nvfetcher # Tool of automate nix package updates
+  nixos-generators # creating nixos image tool
+
+  ascii-image-converter # Make ascii art
   cloc # A program that counts lines of source code
+  cmatrix # Lain of character
+  convmv #convert encoding
+  devbox # Instant, easy, predictable shells and container
+  ffmpeg # Multi media solution
+  figlet # Make AA from character
   github-cli # GitHub CLI tool
   graphicsmagick # CLI Image Editor
   liberation_ttf # Fonr for Latex

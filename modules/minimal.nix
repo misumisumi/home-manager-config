@@ -5,13 +5,13 @@
 {
   imports =
     [
-      ./zinit.nix
       ../apps/fzf
       ../apps/git
       ../apps/man
-      ../apps/neovim
       ../apps/ranger
       ../apps/wezterm
-    ] ++ (import ../apps/shell);
+      ../apps/shell/bash.nix
+      ../apps/shell/starship.nix
+    ];
   config.home.packages = pkgs.callPackage (import ../apps/pkgs/core.nix) { };
 }

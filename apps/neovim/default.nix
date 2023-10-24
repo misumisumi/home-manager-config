@@ -15,6 +15,7 @@
     vimAlias = true;
     vimdiffAlias = true;
     extraPackages = with pkgs; [
+      go
       deno
       nixpkgs-fmt
     ];

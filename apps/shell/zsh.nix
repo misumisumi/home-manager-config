@@ -2,16 +2,12 @@
 #  I have some plugins problem when managin nix, so I manage zsh plugins from zinit.
 #  When you put zinit in nixpkgs, you need to create a symbolic link manually because the path to completions is different.
 #  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
-{ pkgs, config, ... }:
-let
-  zdotDir = "${config.xdg.configHome}/zsh";
-in
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [ nix-zsh-completions ];
   programs = {
     zsh = {
       enable = true;
-      dotDir = zdotDir;
 
       enableAutosuggestions = false;
       enableCompletion = false;
@@ -26,6 +22,7 @@ in
           "kill *"
           "history *"
         ];
+        extended = true;
         save = 10000;
         size = 10000;
         share = true;
@@ -51,7 +48,7 @@ in
           modifier = ''
             depth=1 atload'P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
             [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-            source "${zdotDir}/.p10k.zsh"' light-mode \
+            source "''${HOME}/.p10k.zsh"' light-mode \
           '';
         };
         plugins = {
@@ -83,7 +80,7 @@ in
           ];
           pmodulesWithModifier = {
             "wait'0a' lucid" = [
-              "history"
+              # "history"
               "directory"
               "spectrum"
             ];
@@ -133,7 +130,8 @@ in
               nixtest='sudo nixos-rebuild test --flake'
               nixswitch='sudo nixos-rebuild switch --flake'
             )
-            if [[ ''${#abbr_cmds[@]} == $(cat ${zdotDir}/abbreviations | wc -l) ]]; then
+            [ ! -d "''${XDG_CONFIG_HOME}/zsh-abbr" ] && mkdir -p "''${XDG_CONFIG_HOME}/zsh-abbr"
+            if [[ ''${#abbr_cmds[@]} == $(cat ''${XDG_CONFIG_HOME}/zsh-abbr/user-abbreviations | wc -l) ]]; then
               abbr load
             else
               for cmd in "''${abbr_cmds[@]}"
@@ -163,8 +161,6 @@ in
       initExtraBeforeCompInit = ''
         setopt EXTENDED_GLOB         # 拡張GRUBの有効化(^: 否定、~: 除外)
         setopt BARE_GLOB_QUAL        # 条件付け検索の有効化
-        setopt append_history        # 履歴を追加 (毎回 .zsh_history を作るのではなく)
-        setopt inc_append_history    # 履歴をインクリメンタルに追加
       '';
 
       initExtra = ''
