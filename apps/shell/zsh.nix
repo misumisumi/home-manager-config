@@ -142,7 +142,9 @@
           }
         '';
       };
-      shellAliases = { };
+      shellAliases = {
+        nix = "noglob nix";
+      };
       localVariables = {
         ZVM_VI_INSERT_ESCAPE_BINDKEY = "jj";
         ZVM_VI_VISUAL_ESCAPE_BINDKEY = "jj";
