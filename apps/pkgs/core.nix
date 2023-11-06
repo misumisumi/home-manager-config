@@ -1,33 +1,29 @@
 { pkgs
 }:
-let
-  pythonPkgs = ps:
-    with ps; [
-      numpy
-    ];
-in
 with pkgs;
 [
-  (python3.withPackages pythonPkgs)
-
   bc # GNU calculater
   bintools # Manipulating binaries
   bottom # System monitor
   btop # System monitor
+  coreutils-full # GNU coreutils
+  curl # Downloader
   dig # Domain name server
   duf # Show storage usage
   fd # fast find
+  gptfdisk # GPT partition tools
   iperf3 # Network speed test tool
   jq # JSON processor
+  killall # Process killer
   lsof # check port
-  mosh # Mobile Shell
   neofetch # Fetch system info
-  p7zip
+  p7zip # 7z for unix
   progress # Show progress of coreutils programs
   ripgrep # fast grep
-  trash-cli # Command Line Interface to FreeDesktop.org Trash
+  traceroute # Track the network route
   tree # Show file tree
   unzip #Archives
+  wget # Downloader
   yq-go # YAML processor
   zip # Archives
 ]

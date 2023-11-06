@@ -1,5 +1,9 @@
 { pkgs, ... }:
 let
+  pythonPkgs = ps:
+    with ps; [
+      numpy
+    ];
   texlive-combined = pkgs.texlive.combine {
     # TexLive(Japanese support)
     inherit
@@ -18,6 +22,8 @@ let
   };
 in
 with pkgs;[
+  (python3.withPackages pythonPkgs)
+
   nix-index # A files database for nixpkgs
   nix-prefetch # Prefetch checkers
   nix-prefetch-git
@@ -28,17 +34,18 @@ with pkgs;[
   cloc # A program that counts lines of source code
   cmatrix # Lain of character
   convmv #convert encoding
-  devbox # Instant, easy, predictable shells and container
   ffmpeg # Multi media solution
   figlet # Make AA from character
   github-cli # GitHub CLI tool
   graphicsmagick # CLI Image Editor
   liberation_ttf # Fonr for Latex
   lmodern # Font for LaTex
+  mosh # Mobile Shell
   nixos-generators # creating nixos image tool
   pandoc # Document Converter
   playerctl # CLI control media
   poppler_utils # A PDF rendering
   sox # CLI Sound Editor
+  trash-cli # Command Line Interface to FreeDesktop.org Trash
   texlive-combined # LaTex
 ]
