@@ -4,6 +4,7 @@
 , user
 , stateVersion
 , withExtra ? false
+, homeDirectory ? ""
 , ...
 }: {
   imports =
@@ -27,7 +28,7 @@
   home = {
     inherit stateVersion;
     username = "${user}";
-    homeDirectory = "/home/${user}";
+    homeDirectory = if homeDirectory == "" then "/home/${user}" else homeDirectory;
     packages = pkgs.callPackage (import ../apps/pkgs/core.nix) { }
       ++ lib.optionals withExtra (pkgs.callPackage (import ../apps/pkgs/extra.nix) { });
 
