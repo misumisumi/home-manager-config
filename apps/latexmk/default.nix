@@ -1,4 +1,7 @@
 { withExtra ? false, ... }:
 {
-  xdg.configFile."latexmkrc".source = if withExtra then ./latexmkrc else null;
+  xdg.configFile."latexmkrc" = {
+    enable = withExtra;
+    source = ./latexmkrc;
+  };
 }

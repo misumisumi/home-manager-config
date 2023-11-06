@@ -20,7 +20,10 @@
   };
   xdg = {
     configFile = {
-      "wezterm".source = if (! withTmux) then ./config else null;
+      "wezterm" = {
+        enable = ! withTmux;
+        source = ./config;
+      };
     };
   };
 }

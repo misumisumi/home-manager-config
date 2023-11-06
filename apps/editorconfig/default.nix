@@ -7,6 +7,9 @@
     enable = withExtra;
   };
   home = {
-    file."${config.home.homeDirectory}/.editorconfig".source = if withExtra then ./.editorconfig else null;
+    file."${config.home.homeDirectory}/.editorconfig" = {
+      enable = withExtra;
+      source = ./.editorconfig;
+    };
   };
 }
