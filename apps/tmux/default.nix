@@ -1,81 +1,84 @@
 { lib
 , pkgs
+, withTmux ? false
 , ...
 }: {
-  home.packages = with pkgs; [ xsel bc ];
-  programs = with lib; {
-    fzf = {
-      tmux = {
-        enableShellIntegration = true;
-        shellIntegrationOptions = [
-          "-p"
-          "-w 80%"
-          "-h 70%"
-        ];
-      };
-    };
-    zsh = {
-      prezto = {
+  home.packages = with pkgs; lib.optionals withTmux [ xsel bc ];
+  programs = lib.optionalAttrs withTmux
+    {
+      fzf = {
         tmux = {
-          autoStartLocal = true;
-          autoStartRemote = true;
-          defaultSessionName = "WS0";
-          itermIntegration = true;
+          enableShellIntegration = true;
+          shellIntegrationOptions = [
+            "-p"
+            "-w 80%"
+            "-h 70%"
+          ];
         };
       };
-      initExtraFirst = mkOrder 800 ''
-        auto start tmux
-        if [[ ! -n $TMUX ]]; then
-          tmux start-server
-          if ! tmux list-session 2> /dev/null; then
-            tmux new-session -s "WS0"
-          else
-            is_attach=""
-            tmux list-sessions | while read line; do
-              if [[ $(echo $line | grep "attached") == "" ]]; then
-                is_attach=$(echo $line | awk -F':' '{print $1}')
-                echo $is_attach
-                break
-              fi
-            done
-            if [[ ! $is_attach ]]; then
-              tmux new-session
+      zsh = {
+        prezto = {
+          tmux = {
+            autoStartLocal = true;
+            autoStartRemote = true;
+            defaultSessionName = "WS0";
+            itermIntegration = true;
+          };
+        };
+        initExtraFirst = lib.mkOrder 800 ''
+          auto start tmux
+          if [[ ! -n $TMUX ]]; then
+            tmux start-server
+            if ! tmux list-session 2> /dev/null; then
+              tmux new-session -s "WS0"
             else
-              tmux attach-session -t $is_attach
-            fi
-          fi
-          exit
-        fi
-      '';
-    };
-    bash = {
-      initExtra = mkOrder 800 ''
-        auto start tmux
-        if [[ ! -n $TMUX ]]; then
-          tmux start-server
-          if ! tmux list-session 2> /dev/null; then
-            tmux new-session -s "WS0"
-          else
-            is_attach=""
-            tmux list-sessions | while read line; do
-              if [[ $(echo $line | grep "attached") == "" ]]; then
-                is_attach=$(echo $line | awk -F':' '{print $1}')
-                echo $is_attach
-                break
+              is_attach=""
+              tmux list-sessions | while read line; do
+                if [[ $(echo $line | grep "attached") == "" ]]; then
+                  is_attach=$(echo $line | awk -F':' '{print $1}')
+                  echo $is_attach
+                  break
+                fi
+              done
+              if [[ ! $is_attach ]]; then
+                tmux new-session
+              else
+                tmux attach-session -t $is_attach
               fi
-            done
-            if [[ ! $is_attach ]]; then
-              tmux new-session
-            else
-              tmux attach-session -t $is_attach
             fi
+            exit
           fi
-          exit
-        fi
-      '';
-    };
+        '';
+      };
+      bash = {
+        initExtra = lib.mkOrder 800 ''
+          auto start tmux
+          if [[ ! -n $TMUX ]]; then
+            tmux start-server
+            if ! tmux list-session 2> /dev/null; then
+              tmux new-session -s "WS0"
+            else
+              is_attach=""
+              tmux list-sessions | while read line; do
+                if [[ $(echo $line | grep "attached") == "" ]]; then
+                  is_attach=$(echo $line | awk -F':' '{print $1}')
+                  echo $is_attach
+                  break
+                fi
+              done
+              if [[ ! $is_attach ]]; then
+                tmux new-session
+              else
+                tmux attach-session -t $is_attach
+              fi
+            fi
+            exit
+          fi
+        '';
+      };
+    } // {
     tmux = {
-      enable = true;
+      enable = withTmux;
 
       # tmuxのプラグインはリストで[ tmux-plugin { plugin=tmux-plugin extraConfig="some settings for tmux-plugin" } ]とする
       plugins = with pkgs.tmuxPlugins; [

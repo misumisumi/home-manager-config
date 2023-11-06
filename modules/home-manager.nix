@@ -4,7 +4,6 @@
 , user
 , stateVersion
 , withExtra ? false
-, withTmux ? false
 , ...
 }: {
   imports =
@@ -13,18 +12,17 @@
       ../apps/fzf
       ../apps/git
       ../apps/man
-      ../apps/neovim
       ../apps/ranger
-    ] ++ (import ../apps/shell)
-    ++ lib.optionals withExtra [
       ../apps/direnv
       ../apps/editorconfig
       ../apps/latexmk
       ../apps/navi
+      ../apps/neovim
       ../apps/translate-shell
-    ] ++ lib.optional withTmux ../apps/tmux
-    ++ lib.optional (! withTmux) ../apps/wezterm;
-  programs. home-manager.enable = true;
+      ../apps/tmux
+      ../apps/wezterm
+    ] ++ (import ../apps/shell);
+  programs.home-manager.enable = true;
 
   home = {
     inherit stateVersion;

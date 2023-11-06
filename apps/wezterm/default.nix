@@ -1,6 +1,7 @@
 { lib
 , pkgs
 , withExtra ? false
+, withTmux ? false
 , ...
 }:
 {
@@ -15,11 +16,11 @@
     })
   ];
   programs.wezterm = {
-    enable = true;
+    enable = ! withTmux;
   };
   xdg = {
     configFile = {
-      "wezterm".source = ./config;
+      "wezterm".source = if (! withTmux) then ./config else null;
     };
   };
 }
