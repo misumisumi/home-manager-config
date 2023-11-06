@@ -1,9 +1,15 @@
-{ config, ... }:
+{ config
+, withExtra ? false
+, ...
+}:
 {
   editorconfig = {
-    enable = true;
+    enable = withExtra;
   };
   home = {
-    file."${config.home.homeDirectory}/.editorconfig".source = ./.editorconfig;
+    file."${config.home.homeDirectory}/.editorconfig" = {
+      enable = withExtra;
+      source = ./.editorconfig;
+    };
   };
 }

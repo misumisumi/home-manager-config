@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ lib
+, pkgs
+, ...
+}:
 let
   pythonPkgs = ps:
     with ps; [
@@ -22,6 +25,14 @@ let
   };
 in
 with pkgs;[
+  cloc # A program that counts lines of source code
+  ffmpeg # Multi media solution
+  graphicsmagick # CLI Image Editor
+  mosh # Mobile Shell
+  sox # CLI Sound Editor
+  trash-cli # Command Line Interface to FreeDesktop.org Trash
+  tty-clock # CLI clock
+] ++ lib.optionals (builtins.pathExists "/etc/NIXOS") [
   (python3.withPackages pythonPkgs)
 
   nix-index # A files database for nixpkgs
@@ -31,21 +42,13 @@ with pkgs;[
   nixos-generators # creating nixos image tool
 
   ascii-image-converter # Make ascii art
-  cloc # A program that counts lines of source code
   cmatrix # Lain of character
   convmv #convert encoding
-  ffmpeg # Multi media solution
   figlet # Make AA from character
-  github-cli # GitHub CLI tool
-  graphicsmagick # CLI Image Editor
-  liberation_ttf # Fonr for Latex
+  liberation_ttf # Font for Latex
   lmodern # Font for LaTex
-  mosh # Mobile Shell
-  nixos-generators # creating nixos image tool
   pandoc # Document Converter
   playerctl # CLI control media
   poppler_utils # A PDF rendering
-  sox # CLI Sound Editor
-  trash-cli # Command Line Interface to FreeDesktop.org Trash
   texlive-combined # LaTex
 ]
