@@ -6,7 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    plemoljp-fonts # Install from misumisumi/flakes
+    udev-gothic-nf
   ] ++ lib.optionals withExtra [
     (nerdfonts.override {
       # Nerdfont override
