@@ -5,7 +5,7 @@
       inherit (tpkgs)
         algorithms
         boondox
-        collection-fontsrecommended 
+        collection-fontsrecommended
         collection-langjapanese
         collection-latexextra
         fontaxes
