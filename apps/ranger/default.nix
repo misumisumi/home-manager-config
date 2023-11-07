@@ -5,17 +5,17 @@
 let
   preview4linux = ''
     # Specify path to Überzug
-    substituteInPlace ranger/ext/img_display.py \
-      --replace "Popen(['ueberzug'" "Popen(['${pkgs.ueberzug}/bin/ueberzug'"
+    # substituteInPlace ranger/ext/img_display.py \
+    #   --replace "Popen(['ueberzug'" "Popen(['${pkgs.ueberzug}/bin/ueberzug'"
 
     # Use Überzug as the default method
     substituteInPlace ranger/config/rc.conf \
-      --replace 'set preview_images_method w3m' 'set preview_images_method ueberzug'
+      --replace 'set preview_images_method w3m' 'set preview_images_method iterm2'
   '';
   preview4mac = ''
     # Use kitty as the default method
     substituteInPlace ranger/config/rc.conf \
-      --replace 'set preview_images_method w3m' 'set preview_images_method kitty'
+      --replace 'set preview_images_method w3m' 'set preview_images_method iterm2'
   '';
 
   ranger = pkgs.ranger.overrideAttrs (r: {
