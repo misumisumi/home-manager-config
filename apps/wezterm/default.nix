@@ -19,11 +19,12 @@
     enable = ! withTmux;
   };
   xdg = {
-    configFile = {
-      "wezterm" = {
-        enable = ! withTmux;
-        source = ./config;
-      };
-    };
+    configFile = lib.mapAttrs'
+      (f: _:
+        lib.nameValuePair "wezterm/${f}" {
+          enable = ! withTmux;
+          source = ./config/${f};
+        })
+      (builtins.readDir ./config);
   };
 }
