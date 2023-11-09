@@ -25,12 +25,6 @@ let
   };
 in
 with pkgs;[
-  nix-index # A files database for nixpkgs
-  nix-prefetch # Prefetch checkers
-  nix-prefetch-git
-  nvfetcher # Tool of automate nix package updates
-
-
   (python3.withPackages pythonPkgs)
   ascii-image-converter # Make ascii art
   cloc # A program that counts lines of source code
