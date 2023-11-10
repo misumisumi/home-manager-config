@@ -18,8 +18,9 @@
     vimAlias = true;
     vimdiffAlias = true;
     extraPackages = with pkgs; [
-      go
       deno
+      go
+      nixd
       nixpkgs-fmt
     ];
   };
