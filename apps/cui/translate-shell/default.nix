@@ -1,7 +1,6 @@
-{ withExtra ? false, ... }:
 {
   programs.translate-shell = {
-    enable = withExtra;
+    enable = true;
     settings = {
       hl = "ja";
       tl = [

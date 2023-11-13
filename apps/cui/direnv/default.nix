@@ -1,9 +1,8 @@
-{ withExtra ? false, ... }:
 {
   home.sessionVariables.DIRENV_WARN_TIMEOUT = "300s"; # DIRENVのタイムアウトまでを長くする
   programs = {
     direnv = {
-      enable = withExtra;
+      enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
 

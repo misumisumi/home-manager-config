@@ -5,7 +5,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../modules/zinit.nix
+    ../../../modules/zinit.nix
   ];
   home.packages = with pkgs; [ nix-zsh-completions ];
   programs = {

@@ -1,8 +1,6 @@
-{ withExtra ? false, ... }:
-
 {
   programs.navi = {
-    enable = withExtra;
+    enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
     settings = {
