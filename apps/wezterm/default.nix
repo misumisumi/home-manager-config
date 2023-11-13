@@ -23,8 +23,8 @@
       (f: _:
         lib.nameValuePair "wezterm/${f}" {
           enable = ! withTmux;
-          source = ./config/${f};
+          source = ./wezterm/${f};
         })
-      (builtins.readDir ./config);
+      (builtins.readDir ./wezterm);
   };
 }
