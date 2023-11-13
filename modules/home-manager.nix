@@ -19,30 +19,30 @@
     }
   ];
   imports = [
-    ../apps/cui/bash
-    ../apps/cui/btop
-    ../apps/cui/fzf
-    ../apps/cui/git
-    ../apps/cui/man
-    ../apps/cui/navi
-    ../apps/cui/nix-conf
-    ../apps/cui/pkgs/minimal.nix
-    ../apps/cui/ranger
-    ../apps/cui/starship
-    ../apps/cui/tmux
-    ../apps/cui/wezterm
-    ../apps/cui/xdg
+    ../apps/cli/bash
+    ../apps/cli/btop
+    ../apps/cli/fzf
+    ../apps/cli/git
+    ../apps/cli/man
+    ../apps/cli/navi
+    ../apps/cli/nix-conf
+    ../apps/cli/pkgs/minimal.nix
+    ../apps/cli/ranger
+    ../apps/cli/starship
+    ../apps/cli/tmux
+    ../apps/cli/wezterm
+    ../apps/cli/xdg
   ] ++ lib.optionals (scheme != "minimal") [
-    ../apps/cui/direnv
-    ../apps/cui/editorconfig
-    ../apps/cui/neovim
-    ../apps/cui/pkgs/core.nix
-    ../apps/cui/texlive
-    ../apps/cui/translate-shell
-    ../apps/cui/zsh
+    ../apps/cli/direnv
+    ../apps/cli/editorconfig
+    ../apps/cli/neovim
+    ../apps/cli/pkgs/core.nix
+    ../apps/cli/texlive
+    ../apps/cli/translate-shell
+    ../apps/cli/zsh
   ] ++ lib.optionals (scheme == "full") (
     [ ../apps/gui/pkgs ] ++
-      builtins.concatMap (x: import x) [
+      builtins.concatMap import [
         ../apps/gui/ime
         ../apps/gui/programs
         ../apps/gui/services
