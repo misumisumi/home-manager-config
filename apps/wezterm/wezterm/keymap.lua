@@ -11,7 +11,7 @@ if wezterm.gui then
         key = "Escape",
         mods = "NONE",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -19,7 +19,7 @@ if wezterm.gui then
         key = "c",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -27,7 +27,7 @@ if wezterm.gui then
         key = "g",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -35,7 +35,7 @@ if wezterm.gui then
         key = "q",
         mods = "NONE",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -43,7 +43,7 @@ if wezterm.gui then
         key = "Escape",
         mods = "NONE",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -51,7 +51,7 @@ if wezterm.gui then
         key = "c",
         mods = "CTRL|LEADER",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -59,7 +59,7 @@ if wezterm.gui then
         key = "g",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -67,7 +67,7 @@ if wezterm.gui then
         key = "q",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            os.execute("fcitx5-remote -g skk")
+            os.execute("fcitx5-remote -g SKK")
             win:perform_action(act.CopyMode("Close"), pane)
         end),
     })
@@ -186,7 +186,7 @@ local config = {
         { key = "j", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Down") },
         { key = "k", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Up") },
         { key = "l", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection("Right") },
-        { key = "d", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
+        { key = "o", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
         { key = "p", mods = "SHIFT|CTRL", action = act.ShowLauncher },
         { key = "q", mods = "CTRL|LEADER", action = act.QuickSelect },
         { key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },

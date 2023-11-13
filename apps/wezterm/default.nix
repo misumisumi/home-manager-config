@@ -1,7 +1,6 @@
 { lib
 , pkgs
 , withExtra ? false
-, withTmux ? false
 , ...
 }:
 {
@@ -16,13 +15,13 @@
     })
   ];
   programs.wezterm = {
-    enable = ! withTmux;
+    enable = true;
   };
   xdg = {
     configFile = lib.mapAttrs'
       (f: _:
         lib.nameValuePair "wezterm/${f}" {
-          enable = ! withTmux;
+          enable = true;
           source = ./wezterm/${f};
         })
       (builtins.readDir ./wezterm);

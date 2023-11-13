@@ -15,6 +15,17 @@ local color_set = {
     fg_active = "#f8f8f2",
 }
 
+local function tab_title(tab_info)
+    local title = tab_info.tab_title
+    -- if the tab title is explicitly set, take that
+    if title and #title > 0 then
+        return title
+    end
+    -- Otherwise, use the title from the active pane
+    -- in that tab
+    return tab_info.active_pane.title
+end
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     local edge_background = color_set.bg_tab
     local right_edge_background = nil
@@ -55,15 +66,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     if right_edge_background == nil then
         right_edge_background = background
     end
-
     -- ensure that the titles fit in the available space,
     -- and that we have room for the edges.
-    local title = " "
-        .. zoomed
-        .. tab.tab_index
-        .. " "
-        .. wezterm.truncate_right(tab.active_pane.title, max_width - 5 - extra_pad)
-        .. " "
+    local title = tab_title(tab)
+    title = " " .. zoomed .. tab.tab_index .. " " .. wezterm.truncate_right(title, max_width - 5 - extra_pad) .. " "
 
     return {
         { Background = { Color = edge_background } },
@@ -122,11 +128,7 @@ local config = {
     tab_max_width = 16,
     default_cwd = wezterm.home_dir,
     quick_select_patterns = {
-        -- match things that look like sha1 hashes
-        -- (this is actually one of the default patterns)
-        -- "[0-9a-zA-Z]{7,40}",
-        -- ".{1,80}.[a-z]+",
-        "[[a-zA-Z0-9][!-~]+]{8,160}",
+        "(?<=[\\(|{|`|'|\"])[^[\\(|{|`|'|\"][\\)|}|`|'|\"]]+(?=[\\)|}|`|'|\"])",
     },
 }
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then

@@ -25,7 +25,7 @@ let
 
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots
-        ./modules/home-manager
+        ../modules/home-manager.nix
       ]; # ++ lib.optional withGui ./gui.nix;
     };
 in
@@ -33,5 +33,6 @@ in
   cui = settings {
     hostname = "cui";
     user = "hm-user";
+    withExtra = true;
   };
 }

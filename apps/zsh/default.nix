@@ -4,6 +4,9 @@
 #  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
 { pkgs, ... }:
 {
+  imports = [
+    ../../modules/zinit.nix
+  ];
   home.packages = with pkgs; [ nix-zsh-completions ];
   programs = {
     zsh = {
