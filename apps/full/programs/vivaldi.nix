@@ -1,8 +1,11 @@
 { pkgs, ... }:
 {
+  home.sessionVariables = {
+    CHROME_PATH = "${pkgs.vivaldi}/bin/vivaldi";
+  };
   programs.vivaldi = {
     enable = true;
-    package = (pkgs.vivaldi.override { proprietaryCodecs = true; });
+    package = pkgs.vivaldi.override { proprietaryCodecs = true; };
     dictionaries = with pkgs; [
       hunspellDictsChromium.en_US
     ];

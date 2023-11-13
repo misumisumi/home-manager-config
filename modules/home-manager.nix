@@ -19,37 +19,37 @@
     }
   ];
   imports = [
-    ../apps/cli/bash
-    ../apps/cli/btop
-    ../apps/cli/fzf
-    ../apps/cli/git
-    ../apps/cli/man
-    ../apps/cli/navi
-    ../apps/cli/nix-conf
-    ../apps/cli/pkgs/minimal.nix
-    ../apps/cli/ranger
-    ../apps/cli/starship
-    ../apps/cli/tmux
-    ../apps/cli/wezterm
-    ../apps/cli/xdg
+    ../apps/minimal/bash
+    ../apps/minimal/btop
+    ../apps/minimal/fzf
+    ../apps/minimal/git
+    ../apps/minimal/man
+    ../apps/minimal/navi
+    ../apps/minimal/nix-conf
+    ../apps/minimal/pkgs
+    ../apps/minimal/ranger
+    ../apps/minimal/starship
+    ../apps/minimal/tmux
+    ../apps/minimal/wezterm
+    ../apps/minimal/xdg
   ] ++ lib.optionals (scheme != "minimal") [
-    ../apps/cli/direnv
-    ../apps/cli/editorconfig
-    ../apps/cli/neovim
-    ../apps/cli/pkgs/core.nix
-    ../apps/cli/texlive
-    ../apps/cli/translate-shell
-    ../apps/cli/zsh
+    ../apps/core/direnv
+    ../apps/core/editorconfig
+    ../apps/core/neovim
+    ../apps/core/pkgs
+    ../apps/core/texlive
+    ../apps/core/translate-shell
+    ../apps/core/zsh
   ] ++ lib.optionals (scheme == "full") (
-    [ ../apps/gui/pkgs ] ++
+    [ ../apps/full/pkgs ] ++
       builtins.concatMap import [
-        ../apps/gui/ime
-        ../apps/gui/programs
-        ../apps/gui/services
-        ../apps/gui/systemd
-        ../apps/gui/terminal
-        ../apps/gui/theme
-        ../apps/gui/xdg-mime
+        ../apps/full/ime
+        ../apps/full/programs
+        ../apps/full/services
+        ../apps/full/systemd
+        ../apps/full/terminal
+        ../apps/full/theme
+        ../apps/full/xdg-mime
       ]
   )
   ++ lib.optionals (wm != "") [
@@ -61,11 +61,6 @@
     inherit stateVersion;
     username = "${user}";
     homeDirectory = if homeDirectory == "" then "/home/${user}" else homeDirectory;
-
-    sessionVariables = {
-      CHROME_PATH = "${pkgs.vivaldi}/bin/vivaldi";
-      NIXOS_OZONE_WL = "1";
-    };
   };
   fonts.fontconfig.enable = true;
 }

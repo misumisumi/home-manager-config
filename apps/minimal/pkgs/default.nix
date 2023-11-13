@@ -18,12 +18,12 @@
         jq # JSON processor
         killall # Process killer
         lsof # check port
+        mosh # Mobile Shell
         neofetch # Fetch system info
         progress # Show progress of coreutils programs
         ripgrep # fast grep
         traceroute # Track the network route
         tree # Show file tree
-        unar # An archive unpacker program
         wget # Downloader
         yq-go # YAML processor
       ];
@@ -32,12 +32,6 @@
       grep = "grep --color=auto";
       fgrep = "grep -F --color=auto";
       egrep = "grep -E --color=auto";
-      tm = "trash-put";
-      tls = "trash-list";
-      tre = "trash-restore";
-      temp = "trash-empty";
-      trm = "trash-rm";
-      tty-clock = "tty-clock -s -c -C 6";
     };
   };
 }

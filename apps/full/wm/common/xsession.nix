@@ -23,6 +23,9 @@
 
   home = {
     packages = with pkgs; [ betterlockscreen libinput-gestures ];
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
     keyboard = {
       layout = "us";
       model = "pc104";
