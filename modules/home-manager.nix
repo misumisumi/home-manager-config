@@ -10,19 +10,22 @@
   imports =
     [
       ./zinit.nix
-      ../apps/fzf
-      ../apps/git
-      ../apps/man
-      ../apps/ranger
+      ../apps/bash
       ../apps/direnv
       ../apps/editorconfig
+      ../apps/fzf
+      ../apps/git
       ../apps/latexmk
+      ../apps/man
       ../apps/navi
       ../apps/neovim
-      ../apps/translate-shell
+      ../apps/ranger
+      ../apps/starship
       ../apps/tmux
+      ../apps/translate-shell
       ../apps/wezterm
-    ] ++ (import ../apps/shell);
+      ../apps/zsh
+    ];
   programs.home-manager.enable = true;
 
   home = {
