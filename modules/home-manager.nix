@@ -3,6 +3,7 @@
 , user
 , stateVersion
 , scheme ? "minimal"
+, wm ? ""
 , homeDirectory ? ""
 , ...
 }: {
@@ -39,6 +40,20 @@
     ../apps/cui/texlive
     ../apps/cui/translate-shell
     ../apps/cui/zsh
+  ] ++ lib.optionals (scheme == "full") (
+    [ ../apps/gui/pkgs ] ++
+      builtins.concatMap (x: import x) [
+        ../apps/gui/ime
+        ../apps/gui/programs
+        ../apps/gui/services
+        ../apps/gui/systemd
+        ../apps/gui/terminal
+        ../apps/gui/theme
+        ../apps/gui/xdg-mime
+      ]
+  )
+  ++ lib.optionals (wm != "") [
+    ../apps/gui/wm/${wm}
   ];
   programs.home-manager.enable = true;
 

@@ -1,0 +1,4 @@
+[
+  ./xsession.nix
+  ./rofi.nix
+]
