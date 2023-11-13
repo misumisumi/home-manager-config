@@ -4,6 +4,7 @@
 , ...
 }:
 {
+  home.sessionVariables.EDITOR = "nvim";
   programs.dotnet.dev.enable = withExtra;
   programs.java.enable = withExtra;
   programs.neovim.nvimdots = {

@@ -1,85 +1,21 @@
 { lib
 , pkgs
-, withTmux ? false
 , ...
 }: {
-  home.packages = with pkgs; lib.optionals withTmux [ xsel bc ];
-  programs = lib.optionalAttrs withTmux
-    {
-      fzf = {
-        tmux = {
-          enableShellIntegration = true;
-          shellIntegrationOptions = [
-            "-p"
-            "-w 80%"
-            "-h 70%"
-          ];
-        };
+  home.packages = with pkgs; [ xsel bc ];
+  programs = {
+    fzf = {
+      tmux = {
+        enableShellIntegration = true;
+        shellIntegrationOptions = [
+          "-p"
+          "-w 80%"
+          "-h 70%"
+        ];
       };
-      zsh = {
-        prezto = {
-          tmux = {
-            autoStartLocal = true;
-            autoStartRemote = true;
-            defaultSessionName = "WS0";
-            itermIntegration = true;
-          };
-        };
-        initExtraFirst = lib.mkOrder 800 ''
-          auto start tmux
-          if [[ ! -n $TMUX ]]; then
-            tmux start-server
-            if ! tmux list-session 2> /dev/null; then
-              tmux new-session -s "WS0"
-            else
-              is_attach=""
-              tmux list-sessions | while read line; do
-                if [[ $(echo $line | grep "attached") == "" ]]; then
-                  is_attach=$(echo $line | awk -F':' '{print $1}')
-                  echo $is_attach
-                  break
-                fi
-              done
-              if [[ ! $is_attach ]]; then
-                tmux new-session
-              else
-                tmux attach-session -t $is_attach
-              fi
-            fi
-            exit
-          fi
-        '';
-      };
-      bash = {
-        initExtra = lib.mkOrder 800 ''
-          auto start tmux
-          if [[ ! -n $TMUX ]]; then
-            tmux start-server
-            if ! tmux list-session 2> /dev/null; then
-              tmux new-session -s "WS0"
-            else
-              is_attach=""
-              tmux list-sessions | while read line; do
-                if [[ $(echo $line | grep "attached") == "" ]]; then
-                  is_attach=$(echo $line | awk -F':' '{print $1}')
-                  echo $is_attach
-                  break
-                fi
-              done
-              if [[ ! $is_attach ]]; then
-                tmux new-session
-              else
-                tmux attach-session -t $is_attach
-              fi
-            fi
-            exit
-          fi
-        '';
-      };
-    } // {
+    };
     tmux = {
-      enable = withTmux;
-
+      enable = true;
       # tmuxのプラグインはリストで[ tmux-plugin { plugin=tmux-plugin extraConfig="some settings for tmux-plugin" } ]とする
       plugins = with pkgs.tmuxPlugins; [
         sensible
