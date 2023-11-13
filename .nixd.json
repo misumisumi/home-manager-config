@@ -1,0 +1,15 @@
+{
+    "formatting": {
+        "command": "nixpkgs-fmt"
+    },
+    "options": {
+        "enable": true,
+        "args": [
+            "--impure"
+        ],
+        "target": {
+            "args": [],
+            "installable": ".#nixosConfigurations.cui.options"
+        }
+    }
+}
