@@ -5,6 +5,10 @@
     lmodern # Font for LaTex
     poppler_utils # A PDF rendering
   ];
+  xdg.configFile."latexmkrc" = {
+    enable = true;
+    source = ./latexmkrc;
+  };
   programs.texlive = {
     enable = true;
     extraPackages = tpkgs: {

@@ -1,14 +1,13 @@
 # This is need `https://github.com/ayamir/nvimdots`
 { pkgs
-, withExtra ? false
 , ...
 }:
 {
   home.sessionVariables.EDITOR = "nvim";
-  programs.dotnet.dev.enable = withExtra;
-  programs.java.enable = withExtra;
+  programs.dotnet.dev.enable = true;
+  programs.java.enable = true;
   programs.neovim.nvimdots = {
-    enable = withExtra;
+    enable = true;
     setBuildEnv = true;
     withBuildTools = true;
     withHaskell = true;

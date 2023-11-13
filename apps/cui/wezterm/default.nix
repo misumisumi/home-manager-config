@@ -1,12 +1,12 @@
 { lib
 , pkgs
-, withExtra ? false
+, scheme
 , ...
 }:
 {
   home.packages = with pkgs; [
     udev-gothic-nf
-  ] ++ lib.optionals withExtra [
+  ] ++ lib.optionals (scheme != "minimal") [
     (nerdfonts.override {
       # Nerdfont override
       fonts = [
