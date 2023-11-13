@@ -1,0 +1,9 @@
+[
+  ./gpg.nix
+  ./mpv.nix
+  ./nemo.nix
+  ./obs-studio.nix
+  ./programs.nix
+  ./vivaldi.nix
+  ./zathura.nix
+]
