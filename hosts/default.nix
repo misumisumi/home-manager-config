@@ -28,9 +28,19 @@ let
     };
 in
 {
-  cui = settings {
-    hostname = "cui";
+  minimal = settings {
+    hostname = "system";
     user = "hm-user";
     scheme = "minimal";
+  };
+  core = settings {
+    hostname = "system";
+    user = "hm-user";
+    scheme = "core";
+  };
+  full = settings {
+    hostname = "system";
+    user = "hm-user";
+    scheme = "full";
   };
 }

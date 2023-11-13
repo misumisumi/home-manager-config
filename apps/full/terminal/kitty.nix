@@ -11,7 +11,7 @@ in
       font = {
         package = pkgs.plemoljp-fonts;
         name = font;
-        size = size;
+        inherit size;
       };
       settings = {
         foreground = "#f8f8f2";

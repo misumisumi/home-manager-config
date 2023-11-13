@@ -57,11 +57,9 @@
       nixosModules = {
         home-manager = import ./modules/home-manager.nix;
       };
-      homeConfigurations = (
-        import ./hosts {
-          inherit (inputs.nixpkgs) lib;
-          inherit inputs overlay stateVersion;
-        }
-      );
+      homeConfigurations = import ./hosts {
+        inherit (inputs.nixpkgs) lib;
+        inherit inputs overlay stateVersion;
+      };
     };
 }
