@@ -14,7 +14,12 @@ with lib; let
   gitignore = splitString "\n" (readFile ./gitignore);
 in
 {
-  home.packages = with pkgs; [ git-ignore git-secret github-cli ];
+  home.packages = with pkgs; [
+    git-agecrypt
+    git-ignore
+    git-secret
+    github-cli
+  ];
   programs.lazygit = {
     enable = true;
     settings = {

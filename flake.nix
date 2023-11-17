@@ -21,6 +21,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-agecrypt = {
+      url = "github:vlaci/git-agecrypt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nvimdots.url = "github:misumisumi/nvimdots";
     flakes.url = "github:misumisumi/flakes";
@@ -47,6 +51,7 @@
               inputs.nur.overlay
               inputs.nixgl.overlay
               inputs.nix-matlab.overlay
+              inputs.git-agecrypt.overlays.default
               inputs.flakes.overlays.default
               inputs.private-config.overlays.default
             ]
