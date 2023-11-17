@@ -1,0 +1,2 @@
+apps/minimal/ssh/matchblock.nix filter=git-agecrypt diff=git-agecrypt
+apps/minimal/wezterm/wezterm/ssh.lua filter=git-agecrypt diff=git-agecrypt

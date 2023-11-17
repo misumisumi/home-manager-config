@@ -1,0 +1,3 @@
+[config]
+"apps/minimal/ssh/matchblock.nix" = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+/YBUrRUYNJdLE8G6LTFZz4acqyRPvfkfO5EJ9EE3A sumi@stacia"]
+"apps/minimal/wezterm/wezterm/ssh.lua" = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+/YBUrRUYNJdLE8G6LTFZz4acqyRPvfkfO5EJ9EE3A sumi@stacia"]
