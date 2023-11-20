@@ -28,6 +28,8 @@
     ../apps/minimal/nix-conf
     ../apps/minimal/pkgs
     ../apps/minimal/ranger
+    ../apps/minimal/sops
+    ../apps/minimal/ssh
     ../apps/minimal/starship
     ../apps/minimal/tmux
     ../apps/minimal/wezterm
@@ -51,10 +53,10 @@
         ../apps/full/theme
         ../apps/full/xdg-mime
       ]
-  )
-  ++ lib.optionals (wm != "") [
+  ) ++ lib.optionals (wm != "") [
     ../apps/gui/wm/${wm}
-  ];
+  ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
+  ;
   programs.home-manager.enable = true;
 
   home = {
