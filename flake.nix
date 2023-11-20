@@ -84,7 +84,9 @@
           };
           devshells.default = {
             packages = with pkgs; [
+              age
               sops
+              ssh-to-age
             ];
           };
         };
