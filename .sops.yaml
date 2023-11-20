@@ -1,0 +1,11 @@
+keys:
+  - &users:
+    - &sumi age1znnqnxjkr0x70r5ys0n2k34ym5a3spn69yuveqa76wh0ng65catspphysl
+  - &desktops:
+    - &stacia age12994fjtztfkz06rtg0w6gxrzne3z0y223zumu293jtdsfukukussq233na
+creation_rules:
+  - path_regex: secrets/common/ssh/conf.d/hosts/*
+    key_groups:
+      - age:
+          - *sumi
+          - *stacia

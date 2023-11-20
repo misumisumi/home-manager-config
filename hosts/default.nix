@@ -21,6 +21,7 @@ let
       modules = [
         (overlay { inherit system; })
         inputs.nur.nixosModules.nur
+        inputs.sops-nix.homeManagerModules.sops-nix
 
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots

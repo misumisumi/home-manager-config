@@ -15,7 +15,6 @@ with lib; let
 in
 {
   home.packages = with pkgs; [
-    git-agecrypt
     git-ignore
     git-secret
     github-cli
