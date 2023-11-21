@@ -8,7 +8,17 @@ keys:
     - &stacia age12994fjtztfkz06rtg0w6gxrzne3z0y223zumu293jtdsfukukussq233na
     - &zephyrus: age1lc2dnrqr84rat2aqmm9g78mssuxm40vsswr7lnaz59n97qjgg9csx2wekj
 creation_rules:
-  - path_regex: secrets/common/ssh/conf.d/hosts/*
+  - path_regex: secrets/common/ssh/conf.d/hosts/desktops
+    key_groups:
+      - age:
+          - *sumi_mother
+          - *sumi_zephyrus
+  - path_regex: secrets/common/ssh/conf.d/hosts/servers
+    key_groups:
+      - age:
+          - *sumi_mother
+          - *sumi_zephyrus
+  - path_regex: secrets/common/ssh/conf.d/hosts/univ
     key_groups:
       - age:
           - *sumi_mother

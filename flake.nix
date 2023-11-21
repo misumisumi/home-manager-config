@@ -2,21 +2,25 @@
   description = "My home-manager config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix = {
       url = "github:musnix/musnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-matlab = {
       url = "gitlab:doronbehar/nix-matlab";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixgl = {
+      url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -27,10 +31,6 @@
     flakes.url = "github:misumisumi/flakes";
     private-config = {
       url = "git+ssh://git@github.com/misumisumi/nixos-private-config.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    devshell = {
-      url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
