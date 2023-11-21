@@ -48,7 +48,8 @@
         ../apps/full/xdg-mime
       ]
   ) ++ lib.optionals (wm != "") [
-    ../apps/gui/wm/${wm}
+    ../apps/full/wm/common
+    ../apps/full/wm/${wm}
   ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
   ;
   config = lib.mkIf config.dotfilesActivation {

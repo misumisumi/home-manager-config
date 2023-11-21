@@ -1,5 +1,4 @@
 { inputs
-, overlay
 , stateVersion
 , ...
 }:
@@ -10,16 +9,15 @@ let
     , system ? "x86_64-linux"
     , scheme ? ""
     , homeDirectory ? ""
-    , useNixOSWallPaper ? true
+    , useNixOSWallpaper ? true
     }:
     let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit hostname user stateVersion scheme homeDirectory useNixOSWallPaper; };
+      extraSpecialArgs = { inherit hostname user stateVersion scheme homeDirectory useNixOSWallpaper; };
       modules = [
-        (overlay { inherit system; })
         inputs.nur.nixosModules.nur
         inputs.sops-nix.homeManagerModules.sops-nix
 

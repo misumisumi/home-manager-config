@@ -39,89 +39,44 @@
   (final: prev: {
     pythonPackagesOverlays = (prev.pythonPackagesOverlays or [ ]) ++ [
       (pfinal: pprev: {
-        qtile = pprev.qtile.overridePythonAttrs (old:
-          {
-            version = "2023.09.20"; # qtile
-            src = prev.fetchFromGitHub {
-              owner = "qtile";
-              repo = "qtile";
-              rev = "45f249cddd89f782fa309a16b5ad653eab03b9c2";
-              hash = "sha256-NZBPTvvt944j/rhoPKUQpbiQAuG9SFE2QP6yR7ISG0Q=";
-            };
-            prePatch = ''
-              substituteInPlace libqtile/backend/wayland/cffi/build.py \
-                --replace /usr/include/pixman-1 ${prev.pixman.outPath}/include \
-                --replace /usr/include/libdrm ${prev.libdrm.dev.outPath}/include/libdrm
-            '';
-            buildInputs = with prev; [
-              libinput
-              wayland
-              wlroots_0_16
-              libxkbcommon
-              libdrm
+        qtile = pprev.qtile.overridePythonAttrs (old: {
+          patches =
+            old.patches
+              ++ [
+              ./fix-xcbq.patch
             ];
-            propagatedBuildInputs =
-              let
-                _cairocffi = pprev.cairocffi.overridePythonAttrs (_: rec {
-                  pname = "cairocffi";
-                  version = "1.6.1";
-                  src = prev.fetchPypi {
-                    inherit pname version;
-                    hash = "sha256-eOa75HNXZAxFPQvpKfpJzQXM4uEobz0qHKnL2n79uLc=";
-                  };
-                  format = "pyproject";
-                  postPatch = "";
-                  propagatedNativeBuildInputs = with prev.python3Packages; [ cffi flit-core ];
-                });
-                _xcffib = pfinal.xcffib.overrideAttrs (oldAttrs: rec {
-                  version = "1.5.0";
-                  patches = [ ];
-                  src = oldAttrs.src.override {
-                    inherit version;
-                    hash = "sha256-qVyUZfL5e0/O3mBr0eCEB6Mt9xy3YP1Xv+U2d9tpGsw=";
-                  };
-                });
-                _pywlroots =
-                  let
-                    pname = "pywlroots";
-                    version = "0.16.4";
-                  in
-                  pprev.${pname}.overridePythonAttrs (old: {
-                    inherit pname version;
-                    buildInputs = with prev; [ libinput libxkbcommon pixman xorg.libxcb udev wayland wlroots_0_16 ];
-                    src = prev.fetchPypi {
-                      inherit pname version;
-                      hash = "sha256-+1PILk14XoA/dINfoOQeeMSGBrfYX3pLA6eNdwtJkZE=";
-                    };
-                  });
-              in
-              with prev; with pprev; [
-                _xcffib
-                (_cairocffi.override { withXcffib = true; xcffib = _xcffib; })
-                python-dateutil
-                dbus-python
-                dbus-next
-                mpd2
-                psutil
-                pyxdg
-                pygobject3
-                pywayland
-                _pywlroots
-                xkbcommon
-                pulseaudio
-              ];
-            patches =
-              old.patches
-                ++ [
-                ./fix-xcbq.patch
-              ];
-          }
+        }
         );
       }
       )
     ];
   })
-  (final: prev: { })
+  (final: prev: {
+    ranger = prev.ranger.overridePythonAttrs (old: {
+      src = prev.fetchFromGitHub {
+        owner = "ranger";
+        repo = "ranger";
+        rev = "136416c7e2ecc27315fe2354ecadfe09202df7dd";
+        sha256 = "09hvqnk8hvn2mv8m5w389q63wspyfksmwzkr7p8n70kfmfahlvlx";
+      };
+      version = "1.9.3-9";
+      propagatedBuildInputs = with prev.python3Packages; old.propagatedBuildInputs ++ [ astroid pylint ];
+      preConfigure =
+        let
+          preview4linux = ''
+            # Specify path to Überzug
+            # substituteInPlace ranger/ext/img_display.py \
+            #   --replace "Popen(['ueberzug'" "Popen(['${prev.ueberzug}/bin/ueberzug'"
+
+            # Use iterm2 as the default preview image method
+            substituteInPlace ranger/config/rc.conf \
+              --replace 'set preview_images_method w3m' 'set preview_images_method iterm2'
+          '';
+        in
+        old.preConfigure + preview4linux;
+    }
+    );
+  })
   (final: prev: {
     haskellPackages = prev.haskellPackages.override {
       overrides = hself: hsuper: {

@@ -30,26 +30,6 @@
   outputs = inputs @ { self, flake-parts, ... }:
     let
       stateVersion = "23.11";
-      overlay =
-        { system }:
-        let
-          nixpkgs-stable = import inputs.nixpkgs-stable {
-            inherit system;
-            config = { allowUnfree = true; };
-          };
-        in
-        {
-          nixpkgs.overlays =
-            [
-              inputs.nur.overlay
-              inputs.nixgl.overlay
-              inputs.nix-matlab.overlay
-              inputs.git-agecrypt.overlays.default
-              inputs.flakes.overlays.default
-              inputs.private-config.overlays.default
-            ]
-            ++ (import ./patches { inherit nixpkgs-stable; });
-        };
     in
     flake-parts.lib.mkFlake { inherit inputs; }
       {
@@ -63,7 +43,7 @@
           };
           homeConfigurations = import ./hosts {
             inherit (inputs.nixpkgs) lib;
-            inherit inputs overlay stateVersion;
+            inherit inputs stateVersion;
           };
         };
         systems = [ "x86_64-linux" ];

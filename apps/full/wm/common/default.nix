@@ -1,4 +1,6 @@
-[
-  ./xsession.nix
-  ./rofi.nix
-]
+{
+  imports = [
+    ./xsession.nix
+    ./rofi.nix
+  ];
+}
