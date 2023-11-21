@@ -94,24 +94,6 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_3"
-      },
-      "locked": {
-        "lastModified": 1690933134,
-        "narHash": "sha256-ab989mN63fQZBFrkk4Q8bYxQCktuHmBIBqUG1jl6/FQ=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "59cf3f1447cfc75087e7273b04b31e689a8599fb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -379,24 +361,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib_3": {
-      "locked": {
-        "dir": "lib",
-        "lastModified": 1690881714,
-        "narHash": "sha256-h/nXluEqdiQHs1oSgkOOWF+j8gcJMWhwnZ9PFabN6q0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9e1960bc196baf6881340d53dccb203a951745a2",
-        "type": "github"
-      },
-      "original": {
-        "dir": "lib",
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -569,27 +533,6 @@
         "type": "github"
       }
     },
-    "private-config": {
-      "inputs": {
-        "flake-parts": "flake-parts_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1699438354,
-        "narHash": "sha256-nHKpSU9PIiyNNdg5vaZNV6tcaQe0AkT0rEhh8Z7Ww3U=",
-        "ref": "refs/heads/main",
-        "rev": "21090869b182cbb1ce0c3e5072f74b3ce9708641",
-        "revCount": 110,
-        "type": "git",
-        "url": "ssh://git@github.com/misumisumi/nixos-private-config.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/misumisumi/nixos-private-config.git"
-      }
-    },
     "root": {
       "inputs": {
         "devshell": "devshell",
@@ -601,7 +544,6 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nur": "nur",
         "nvimdots": "nvimdots",
-        "private-config": "private-config",
         "sops-nix": "sops-nix"
       }
     },

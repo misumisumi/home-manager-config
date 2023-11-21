@@ -3,9 +3,11 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flakes.url = "github:misumisumi/flakes";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
+    nvimdots.url = "github:misumisumi/nvimdots";
     sops-nix.url = "github:Mic92/sops-nix";
     devshell = {
       url = "github:numtide/devshell";
@@ -17,12 +19,6 @@
     };
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nvimdots.url = "github:misumisumi/nvimdots";
-    flakes.url = "github:misumisumi/flakes";
-    private-config = {
-      url = "git+ssh://git@github.com/misumisumi/nixos-private-config.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
