@@ -1,4 +1,5 @@
-{ lib
+{ config
+, lib
 , pkgs
 , user
 , stateVersion
@@ -6,18 +7,11 @@
 , wm ? ""
 , homeDirectory ? ""
 , ...
-}: {
-  assertions = [
-    {
-      assertion = scheme == "minimal" || scheme == "core" || scheme == "full";
-      message = ''
-        Set scheme 'minimal' or 'core' or 'full'.
-        minimal: shell=bash, minimal utils, no editor, assuming diskless server
-        core: shell=zsh, daily use such as neovim and texlive, without GUI apps
-        full: shell=zsh, daily use such as neovim and vivaldi, with GUI apps
-      '';
-    }
-  ];
+}:
+{
+  options = {
+    dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
+  };
   imports = [
     ../apps/minimal/bash
     ../apps/minimal/btop
@@ -57,12 +51,24 @@
     ../apps/gui/wm/${wm}
   ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
   ;
-  programs.home-manager.enable = true;
-
-  home = {
-    inherit stateVersion;
-    username = "${user}";
-    homeDirectory = if homeDirectory == "" then "/home/${user}" else homeDirectory;
+  config = lib.mkIf config.dotfilesActivation {
+    programs.home-manager.enable = true;
+    assertions = [
+      {
+        assertion = scheme == "minimal" || scheme == "core" || scheme == "full";
+        message = ''
+          Set scheme 'minimal' or 'core' or 'full'.
+          minimal: shell=bash, minimal utils, no editor, assuming diskless server
+          core: shell=zsh, daily use such as neovim and texlive, without GUI apps
+          full: shell=zsh, daily use such as neovim and vivaldi, with GUI apps
+        '';
+      }
+    ];
+    home = {
+      inherit stateVersion;
+      username = "${user}";
+      homeDirectory = if homeDirectory == "" then "/home/${user}" else homeDirectory;
+    };
+    fonts.fontconfig.enable = true;
   };
-  fonts.fontconfig.enable = true;
 }

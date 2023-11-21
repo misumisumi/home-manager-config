@@ -58,7 +58,7 @@
         ];
         flake = {
           homeManagerModules = {
-            dotfiles = import ./modules/home-manager.nix;
+            dotfiles = import ./modules/dotfiles.nix;
             default = self.dotfiles;
           };
           homeConfigurations = import ./hosts {

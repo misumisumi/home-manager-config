@@ -25,8 +25,11 @@ let
 
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots
-        ../modules/${scheme}.nix
+        ../modules/dotfiles.nix
       ];
+      home-manager.users."${user}" = {
+        dotfilesActivation = true;
+      };
     };
 in
 {
