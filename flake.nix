@@ -57,8 +57,9 @@
           inputs.devshell.flakeModule
         ];
         flake = {
-          nixosModules = {
-            home-manager = import ./modules/home-manager.nix;
+          homeManagerModules = {
+            dotfiles = import ./modules/home-manager.nix;
+            default = self.dotfiles;
           };
           homeConfigurations = import ./hosts {
             inherit (inputs.nixpkgs) lib;
