@@ -4,7 +4,7 @@
     forwardAgent = true;
     serverAliveInterval = 30;
     serverAliveCountMax = 5;
-    includes = [ "common/ssh/conf.d/hosts/*" ];
+    includes = [ "conf.d/hosts/*" ];
     matchBlocks = {
       "github" = {
         user = "git";

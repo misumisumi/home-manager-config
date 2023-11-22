@@ -1,21 +1,14 @@
-{ config, username, ... }:
+{ lib, config, ... }:
 {
   sops = {
-    age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
-    age.keyFile = "${config.home.homeDirectory}/.age-key.txt";
-    # secrets = {
-    #   "secrets/common/ssh/conf.d/hosts/desktops" = {
-    #     owner = "sumi";
-    #     path = "${config.home.homeDirectory}/.ssh/conf.d/hosts/desktops";
-    #   };
-    #   "secrets/common/ssh/conf.d/hosts/servers" = {
-    #     owner = "sumi";
-    #     path = "${config.home.homeDirectory}/.ssh/conf.d/hosts/servers";
-    #   };
-    #   "secrets/common/ssh/conf.d/hosts/univ" = {
-    #     owner = "sumi";
-    #     path = "${config.home.homeDirectory}/.ssh/conf.d/hosts/univ";
-    #   };
-    # };
+    age = {
+      sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+      keyFile = "${config.home.homeDirectory}/.age-keys.txt";
+    };
+    secrets."ssh.lua" = {
+      path = "${config.xdg.configHome}/wezterm/ssh.lua";
+      sopsFile = ../../sops/secrets/wezterm/ssh.lua;
+      format = "binary";
+    };
   };
 }

@@ -2,6 +2,7 @@
 , lib
 , pkgs
 , user
+, hostname
 , stateVersion
 , scheme ? "minimal"
 , wm ? ""
@@ -13,6 +14,7 @@
     dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
   };
   imports = [
+    ../users/${user}
     ../apps/minimal/bash
     ../apps/minimal/btop
     ../apps/minimal/fzf
@@ -28,7 +30,9 @@
     ../apps/minimal/tmux
     ../apps/minimal/wezterm
     ../apps/minimal/xdg
-  ] ++ lib.optionals (scheme != "minimal") [
+  ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
+  ++ lib.optional (builtins.pathExists ../hosts/${hostname}) ../hosts/${hostname}
+  ++ lib.optionals (scheme != "minimal") [
     ../apps/core/direnv
     ../apps/core/editorconfig
     ../apps/core/neovim
