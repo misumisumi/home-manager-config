@@ -1,5 +1,8 @@
 { config, ... }:
 {
+  xresources = {
+    extraConfig = "Xft.dpi:100";
+  };
   sops.secrets = {
     "desktops" = {
       path = "${config.home.homeDirectory}/.ssh/conf.d/hosts/desktops";
