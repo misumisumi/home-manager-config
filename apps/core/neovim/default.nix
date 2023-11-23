@@ -22,6 +22,7 @@
       go
       nixd
       nixpkgs-fmt
+      statix
     ];
   };
 }
