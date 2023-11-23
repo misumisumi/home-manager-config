@@ -52,6 +52,15 @@
             config.allowUnfree = true;
           };
           devshells.default = {
+            commands = [
+              {
+                help = "update keys of sops secrets";
+                name = "update-keys";
+                command = ''
+                  find sops/secrets -type f | xargs -I{} sops updatekeys --yes {}
+                '';
+              }
+            ];
             packages = with pkgs; [
               age
               sops
