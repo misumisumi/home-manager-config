@@ -23,7 +23,7 @@
   };
 
   home = {
-    packages = with pkgs; [ betterlockscreen libinput-gestures ];
+    packages = with pkgs; [ betterlockscreen ];
     file = lib.optionalAttrs useNixOSWallpaper
       {
         "${config.home.homeDirectory}/Pictures/wallpapers/fixed/0_main.png".source = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}";
@@ -34,9 +34,9 @@
       (f: _:
         lib.nameValuePair "${config.home.homeDirectory}/Pictures/wallpapers/${f}" {
           enable = true;
-          source = ../wallpapers/${f};
+          source = ./wallpapers/${f};
         })
-      (builtins.readDir ../wallpapers);
+      (builtins.readDir ./wallpapers);
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
@@ -50,13 +50,7 @@
       gtk.enable = true;
       name = "Dracula-cursors";
       package = pkgs.dracula-theme;
-      size = 32;
-    };
-  };
-
-  xdg = {
-    configFile = {
-      "libinput-gestures.conf".source = ./libinput-gestures.conf;
+      size = 24;
     };
   };
 
@@ -69,19 +63,5 @@
       export SDL_JOYSTICK_HIDAPI=0
       xhost si:localuser:$USER &
     '';
-  };
-
-  systemd.user.services = {
-    libinput-gestures = {
-      Unit = {
-        Description = "Launch libinput-gestures";
-        Partof = [ "graphical-session.target" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures";
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
   };
 }
