@@ -14,7 +14,6 @@
     dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
   };
   imports = [
-    ../users/${user}
     ../apps/minimal/bash
     ../apps/minimal/btop
     ../apps/minimal/fzf
@@ -51,10 +50,10 @@
         ../apps/full/theme
         ../apps/full/xdg-mime
       ]
-  ) ++ lib.optionals (wm != "") [
-    ../apps/full/wm/common
+  ) ++ lib.optionals (builtins.pathExists ../apps/full/wm/${wm}) [
+    ../apps/full/xsession
     ../apps/full/wm/${wm}
-  ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
+  ]
   ;
   config = lib.mkIf config.dotfilesActivation {
     programs.home-manager.enable = true;

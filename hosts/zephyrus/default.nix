@@ -1,5 +1,8 @@
 { config, ... }:
 {
+  imports = [
+    ../../apps/full/systemd/libinput-gestures.nix
+  ];
   xresources = {
     extraConfig = "Xft.dpi:100";
   };

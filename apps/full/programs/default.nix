@@ -4,6 +4,7 @@
   ./nemo.nix
   ./obs-studio.nix
   ./programs.nix
+  ./rofi.nix
   ./vivaldi.nix
   ./zathura.nix
 ]
