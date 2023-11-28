@@ -20,7 +20,6 @@
     ../apps/minimal/git
     ../apps/minimal/man
     ../apps/minimal/navi
-    ../apps/minimal/nix
     ../apps/minimal/pkgs
     ../apps/minimal/ranger
     ../apps/minimal/sops

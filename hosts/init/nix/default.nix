@@ -9,12 +9,14 @@ in
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
-  nixpkgs.config = import ./nixpkgs-config.nix;
-  nixpkgs.overlays = [
-    inputs.nur.overlay
-    inputs.nixgl.overlay
-    inputs.flakes.overlays.default
-  ]
-  ++ (import ../../../patches { inherit nixpkgs-stable; });
+  nixpkgs = {
+    config = import ./nixpkgs-config.nix;
+    overlays = [
+      inputs.nur.overlay
+      inputs.nixgl.overlay
+      inputs.flakes.overlays.default
+    ]
+    ++ (import ../../../patches { inherit nixpkgs-stable; });
+  };
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 }

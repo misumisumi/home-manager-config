@@ -25,6 +25,7 @@ let
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots
         ../modules/dotfiles.nix
+        ./init/nix
         {
           dotfilesActivation = true;
           nix.package = pkgs.nix;
