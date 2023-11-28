@@ -1,5 +1,13 @@
-name: "style check"
-on: [push, pull_request]
+name: Format check
+on:
+  push:
+    branch-ignore:
+      - "update_flake_lock_action"
+    tags:
+      - "*"
+    paths:
+      - "**.nix"
+  pull_request:
 
 jobs:
   nixpkgs-fmt:
@@ -10,4 +18,4 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: nix run nixpkgs#nixpkgs-fmt -- --check ./
+      - run: nix run nixpkgs#nixpkgs-fmt -- --check $(find ./ -type f -name "*.nix" | grep -v generated.nix)
