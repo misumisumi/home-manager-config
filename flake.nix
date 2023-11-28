@@ -62,6 +62,7 @@
               }
             ];
             packages = with pkgs; [
+              bashInteractive
               age
               sops
               ssh-to-age
