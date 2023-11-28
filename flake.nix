@@ -68,7 +68,6 @@
             packages = with pkgs; [
               age
               bashInteractive
-              home-manager
               sops
               ssh-to-age
             ];
