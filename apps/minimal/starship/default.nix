@@ -6,6 +6,8 @@ with builtins; {
   };
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
     settings = fromTOML (unsafeDiscardStringContext (readFile ./starship/starship.toml));
   };
   # Disable transient because confilict zsh-vi-mode

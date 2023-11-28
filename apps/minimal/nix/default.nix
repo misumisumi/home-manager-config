@@ -1,4 +1,4 @@
-{ inputs, system, ... }:
+{ inputs, system, pkgs, ... }:
 let
   nixpkgs-stable = import inputs.nixpkgs-stable {
     inherit system;
