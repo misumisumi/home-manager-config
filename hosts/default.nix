@@ -10,24 +10,25 @@ let
     , scheme ? ""
     , homeDirectory ? ""
     , useNixOSWallpaper ? true
+    , wm ? "nonj"
     }:
     let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit hostname user stateVersion scheme homeDirectory useNixOSWallpaper; };
+      extraSpecialArgs = { inherit inputs hostname user stateVersion scheme homeDirectory useNixOSWallpaper wm; };
       modules = [
         inputs.nur.nixosModules.nur
-        inputs.sops-nix.homeManagerModules.sops-nix
+        inputs.sops-nix.homeManagerModules.sops
 
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots
         ../modules/dotfiles.nix
+        {
+          dotfilesActivation = true;
+        }
       ];
-      home-manager.users."${user}" = {
-        dotfilesActivation = true;
-      };
     };
 in
 {

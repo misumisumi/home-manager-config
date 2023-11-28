@@ -1,4 +1,4 @@
-{ inputs, system, ... }:
+{ inputs, system, pkgs, ... }:
 let
   nixpkgs-stable = import inputs.nixpkgs-stable {
     inherit system;
@@ -7,6 +7,7 @@ let
 in
 {
   nix = {
+    package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
   nixpkgs.config = import ./nixpkgs-config.nix;
