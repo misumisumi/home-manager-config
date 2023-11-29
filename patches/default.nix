@@ -59,19 +59,6 @@ final: prev: {
     };
     version = "1.9.3-9";
     propagatedBuildInputs = with prev.python3Packages; old.propagatedBuildInputs ++ [ astroid pylint ];
-    preConfigure =
-      let
-        preview4linux = ''
-          # Specify path to Überzug
-          # substituteInPlace ranger/ext/img_display.py \
-          #   --replace "Popen(['ueberzug'" "Popen(['${prev.ueberzug}/bin/ueberzug'"
-
-          # Use iterm2 as the default preview image method
-          substituteInPlace ranger/config/rc.conf \
-            --replace 'set preview_images_method w3m' 'set preview_images_method iterm2'
-        '';
-      in
-      old.preConfigure + preview4linux;
   });
   haskellPackages = prev.haskellPackages.override {
     overrides = hself: hsuper: {
@@ -92,5 +79,4 @@ final: prev: {
       });
     };
 }
-
 

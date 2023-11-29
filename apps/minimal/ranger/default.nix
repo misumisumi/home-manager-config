@@ -22,7 +22,8 @@
   };
   xdg = {
     configFile = {
-      "ranger/rifle.conf".source = ./ranger/rifle.conf;
+      "ranger/rifle.conf".source = ./config/rifle.conf;
+      "ranger/rc.conf".source = ./config/rc.conf;
     };
   };
 }
