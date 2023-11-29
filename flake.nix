@@ -45,6 +45,15 @@
             inherit (inputs.nixpkgs) lib;
             inherit inputs stateVersion;
           };
+          overlay = self.overlays.default;
+          overlays.default =
+            let
+              nixpkgs-stable = import inputs.nixpkgs-stable {
+                system = "x86_64-linux";
+                config = { allowUnfree = true; };
+              };
+            in
+            import ./patches { inherit nixpkgs-stable; };
         };
         systems = [ "x86_64-linux" ];
         perSystem = { config, pkgs, system, ... }: rec{
@@ -68,6 +77,7 @@
             packages = with pkgs; [
               age
               bashInteractive
+              home-manager
               sops
               ssh-to-age
             ];

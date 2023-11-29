@@ -15,8 +15,8 @@ in
       inputs.nur.overlay
       inputs.nixgl.overlay
       inputs.flakes.overlays.default
-    ]
-    ++ (import ../../../patches { inherit nixpkgs-stable; });
+      (import ../../../patches { inherit nixpkgs-stable; })
+    ];
   };
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 }
