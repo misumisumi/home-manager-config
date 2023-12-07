@@ -24,8 +24,10 @@
         ripgrep # fast grep
         traceroute # Track the network route
         tree # Show file tree
+        unzip
         wget # Downloader
         yq-go # YAML processor
+        zip
       ];
     shellAliases = {
       ls = "ls --color=auto";
