@@ -4,7 +4,7 @@
 , user
 , hostname
 , stateVersion
-, scheme ? "minimal"
+, scheme ? "small"
 , wm ? ""
 , homeDirectory ? ""
 , ...
@@ -14,30 +14,30 @@
     dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
   };
   imports = [
-    ../apps/minimal/bash
-    ../apps/minimal/btop
-    ../apps/minimal/fzf
-    ../apps/minimal/git
-    ../apps/minimal/man
-    ../apps/minimal/navi
-    ../apps/minimal/pkgs
-    ../apps/minimal/ranger
-    ../apps/minimal/sops
-    ../apps/minimal/ssh
-    ../apps/minimal/starship
-    ../apps/minimal/tmux
-    ../apps/minimal/wezterm
-    ../apps/minimal/xdg
+    ../apps/core/bash
+    ../apps/core/btop
+    ../apps/core/fzf
+    ../apps/core/git
+    ../apps/core/man
+    ../apps/core/navi
+    ../apps/core/pkgs
+    ../apps/core/ranger
+    ../apps/core/sops
+    ../apps/core/ssh
+    ../apps/core/starship
+    ../apps/core/tmux
+    ../apps/core/wezterm
+    ../apps/core/xdg
   ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
   ++ lib.optional (builtins.pathExists ../hosts/${hostname}) ../hosts/${hostname}
-  ++ lib.optionals (scheme != "minimal") [
-    ../apps/core/direnv
-    ../apps/core/editorconfig
-    ../apps/core/neovim
-    ../apps/core/pkgs
-    ../apps/core/texlive
-    ../apps/core/translate-shell
-    ../apps/core/zsh
+  ++ lib.optionals (scheme != "core") [
+    ../apps/small/direnv
+    ../apps/small/editorconfig
+    ../apps/small/neovim
+    ../apps/small/pkgs
+    ../apps/small/texlive
+    ../apps/small/translate-shell
+    ../apps/small/zsh
   ] ++ lib.optionals (scheme == "full") (
     [ ../apps/full/pkgs ] ++
       builtins.concatMap import [
@@ -58,11 +58,11 @@
     programs.home-manager.enable = true;
     assertions = [
       {
-        assertion = scheme == "minimal" || scheme == "core" || scheme == "full";
+        assertion = scheme == "core" || scheme == "small" || scheme == "full";
         message = ''
-          Set scheme 'minimal' or 'core' or 'full'.
-          minimal: shell=bash, minimal utils, no editor, assuming diskless server
-          core: shell=zsh, daily use such as neovim and texlive, without GUI apps
+          Set scheme 'core' or 'small' or 'full'.
+          core: shell=bash, core utils, no editor, assuming diskless server
+          small: shell=zsh, daily use such as neovim and texlive, without GUI apps
           full: shell=zsh, daily use such as neovim and vivaldi, with GUI apps
         '';
       }

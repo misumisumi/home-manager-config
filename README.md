@@ -5,12 +5,12 @@ This is dotfiles managed with [home-manager](https://github.com/nix-community/ho
 ## Usage
 
 ```
-# minimal config (Please see apps/minimal)
-home-manager switch --flake ".#minimal"
-
-# core config (Please see apps/core, Include `minimal`)
+# core config (Please see apps/core)
 home-manager switch --flake ".#core"
 
-# core config (Please see apps/full, Include `minimal` and `core`)
+# small config (Please see apps/small, Include `core`)
+home-manager switch --flake ".#small"
+
+# full config (Please see apps/full, Include `core` and `small`)
 home-manager switch --flake ".#full"
 ```
