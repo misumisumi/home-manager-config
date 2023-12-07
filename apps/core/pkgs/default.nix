@@ -1,31 +1,39 @@
 { pkgs
 , ...
 }:
-let
-  pythonPkgs = ps:
-    with ps; [
-      numpy
-    ];
-in
 {
   home = {
-    packages = with pkgs;[
-      (python3.withPackages pythonPkgs)
-      ascii-image-converter # Make ascii art
-      cloc # A program that counts lines of source code
-      cmatrix # Lain of character
-      convmv #convert encoding
-      ffmpeg # Multi media solution
-      figlet # Make AA from character
-      graphicsmagick # CLI Image Editor
-      pandoc # Document Converter
-      playerctl # CLI control media
-      sox # CLI Sound Editor
-      tty-clock # CLI clock
-      unar # An archive unpacker program
-    ];
+    packages = with pkgs;
+      [
+        bc # GNU calculater
+        bintools # Manipulating binaries
+        btop # System monitor
+        coreutils-full # GNU coreutils
+        curl # Downloader
+        dig # Domain name server
+        duf # Show storage usage
+        fd # fast find
+        gptfdisk # GPT partition tools
+        iperf3 # Network speed test tool
+        jq # JSON processor
+        killall # Process killer
+        lsof # check port
+        mosh # Mobile Shell
+        neofetch # Fetch system info
+        progress # Show progress of coreutils programs
+        ripgrep # fast grep
+        traceroute # Track the network route
+        tree # Show file tree
+        unzip
+        wget # Downloader
+        yq-go # YAML processor
+        zip
+      ];
     shellAliases = {
-      tty-clock = "tty-clock -s -c -C 6";
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "grep -F --color=auto";
+      egrep = "grep -E --color=auto";
     };
   };
 }

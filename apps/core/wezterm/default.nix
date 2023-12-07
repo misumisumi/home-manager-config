@@ -6,7 +6,7 @@
 {
   home.packages = with pkgs; [
     udev-gothic-nf
-  ] ++ lib.optionals (scheme != "minimal") [
+  ] ++ lib.optionals (scheme != "core") [
     (nerdfonts.override {
       # Nerdfont override
       fonts = [

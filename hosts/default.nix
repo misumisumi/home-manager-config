@@ -34,15 +34,15 @@ let
     };
 in
 {
-  minimal = settings {
-    hostname = "system";
-    user = "hm-user";
-    scheme = "minimal";
-  };
   core = settings {
     hostname = "system";
     user = "hm-user";
     scheme = "core";
+  };
+  small = settings {
+    hostname = "system";
+    user = "hm-user";
+    scheme = "small";
   };
   full = settings {
     hostname = "system";
