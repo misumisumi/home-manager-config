@@ -44,6 +44,11 @@ in
     user = "hm-user";
     scheme = "small";
   };
+  medium = settings {
+    hostname = "system";
+    user = "hm-user";
+    scheme = "medium";
+  };
   full = settings {
     hostname = "system";
     user = "hm-user";
