@@ -35,10 +35,14 @@
     ../apps/small/editorconfig
     ../apps/small/neovim
     ../apps/small/pkgs
-    ../apps/small/texlive
     ../apps/small/translate-shell
     ../apps/small/zsh
-  ] ++ lib.optionals (scheme == "full") (
+  ]
+  ++ lib.optionals (scheme == "medium" || scheme == "full") [
+    ../apps/medium/pkgs
+    ../apps/medium/texlive
+  ]
+  ++ lib.optionals (scheme == "full") (
     [ ../apps/full/pkgs ] ++
       builtins.concatMap import [
         ../apps/full/ime
@@ -49,7 +53,8 @@
         ../apps/full/theme
         ../apps/full/xdg-mime
       ]
-  ) ++ lib.optionals (builtins.pathExists ../apps/full/wm/${wm}) [
+  )
+  ++ lib.optionals (builtins.pathExists ../apps/full/wm/${wm}) [
     ../apps/full/xsession
     ../apps/full/wm/${wm}
   ]
@@ -58,11 +63,12 @@
     programs.home-manager.enable = true;
     assertions = [
       {
-        assertion = scheme == "core" || scheme == "small" || scheme == "full";
+        assertion = scheme == "core" || scheme == "small" || scheme == "medium" || scheme == "full";
         message = ''
           Set scheme 'core' or 'small' or 'full'.
           core: shell=bash, core utils, no editor, assuming diskless server
-          small: shell=zsh, daily use such as neovim and texlive, without GUI apps
+          small: shell=zsh, and neovim,
+          medium: shell=zsh, daily use such as pandoc and texlive etc.., without GUI apps
           full: shell=zsh, daily use such as neovim and vivaldi, with GUI apps
         '';
       }
