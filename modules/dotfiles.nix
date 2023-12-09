@@ -9,7 +9,7 @@
 , homeDirectory ? ""
 , ...
 }:
-{
+with builtins; {
   options = {
     dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
   };
@@ -28,8 +28,8 @@
     ../apps/core/tmux
     ../apps/core/wezterm
     ../apps/core/xdg
-  ] ++ lib.optional (builtins.pathExists ../users/${user}) ../users/${user}
-  ++ lib.optional (builtins.pathExists ../hosts/${hostname}) ../hosts/${hostname}
+  ] ++ lib.optional (pathExists ../users/${user}) ../users/${user}
+  ++ lib.optional (pathExists ../hosts/${hostname}) ../hosts/${hostname}
   ++ lib.optionals (scheme != "core") [
     ../apps/small/direnv
     ../apps/small/editorconfig
@@ -44,7 +44,7 @@
   ]
   ++ lib.optionals (scheme == "full") (
     [ ../apps/full/pkgs ] ++
-      builtins.concatMap import [
+      concatMap import [
         ../apps/full/ime
         ../apps/full/programs
         ../apps/full/services
@@ -54,7 +54,7 @@
         ../apps/full/xdg-mime
       ]
   )
-  ++ lib.optionals (builtins.pathExists ../apps/full/wm/${wm}) [
+  ++ lib.optionals (pathExists ../apps/full/wm/${wm}) [
     ../apps/full/xsession
     ../apps/full/wm/${wm}
   ]
