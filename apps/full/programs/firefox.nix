@@ -1,14 +1,14 @@
-{ username, nur, ... }:
+{ user, pkgs, ... }:
 {
   programs.firefox = {
     enable = true;
-    profiles."${username}".extensions = with nur.repos.rycee.firefox-addons; [
+    profiles."${user}".extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       bitwarden
       darkreader
       onetab
       privacy-badger
+      ublacklist
       ublock-origin
-      ublocklist
       vimium
     ];
   };
