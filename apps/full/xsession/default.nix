@@ -10,26 +10,46 @@
 , useNixOSWallpaper ? true
 , ...
 }: {
+  home.activation = {
+    betterlockscreenActivatioinAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ${pkgs.betterlockscreen}/bin/betterlockscreen} -u ${config.home.homeDirectory}/Pictures/wallpapers/fixed/0_main.png
+    '';
+  };
   services = {
-    screen-locker = {
+    screen-locker.xautolock.enable = true;
+    betterlockscreen = {
       enable = true;
       inactiveInterval = 40;
-      lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l -- -e";
+      arguments = [ "--show-layout" ];
+    };
+  };
+  systemd.user.services.betterlockscreen-update = {
+    Unit = {
+      Description = "";
+      After = [ "graphical-session.target" ];
+    };
 
-      xautolock = {
-        enable = true;
-      };
+    Install = { WantedBy = [ " graphical-session.target " ]; };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${config.services.betterlockscreen.package}/bin/betterlockscreen -u ${config.home.homeDirectory}/Pictures/wallpapers/screen_saver.png";
     };
   };
 
   home = {
     packages = with pkgs; [ betterlockscreen ];
     file = lib.optionalAttrs useNixOSWallpaper
-      {
-        "${config.home.homeDirectory}/Pictures/wallpapers/fixed/0_main.png".source = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}";
-        "${config.home.homeDirectory}/Pictures/wallpapers/fixed/1_main.png".source = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}";
-        "${config.home.homeDirectory}/Pictures/wallpapers/unfixed/main.png".source = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}";
-      } //
+      (builtins.listToAttrs (
+        map (x: { name = "${config.home.homeDirectory}/Pictures/wallpapers/${x}"; value = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}"; } [
+          "fixed/0_main.png"
+          "fixed/1_main.png"
+          "unfixed/main.png"
+          "background.png"
+          "screen_saver.png"
+        ]))
+      )
+    //
     lib.optionalAttrs (!useNixOSWallpaper) lib.mapAttrs'
       (f: _:
         lib.nameValuePair "${config.home.homeDirectory}/Pictures/wallpapers/${f}" {
@@ -65,3 +85,4 @@
     '';
   };
 }
+

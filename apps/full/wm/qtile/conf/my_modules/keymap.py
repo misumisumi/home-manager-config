@@ -1,13 +1,10 @@
 """short cut keys"""
 from libqtile.config import Click, Drag, Key, KeyChord
 from libqtile.lazy import lazy
-
+from libqtile.log_utils import logger
+from my_modules.functions import *
 from my_modules.global_config import GLOBAL
 from my_modules.groups import GROUP_PER_SCREEN
-from my_modules.functions import *
-
-from libqtile.log_utils import logger
-
 
 keys = [
     Key([GLOBAL.mod], "Return", lazy.spawn(GLOBAL.terminal), desc="Launch terminal"),
@@ -146,7 +143,7 @@ keys = [
     Key(
         [GLOBAL.mod, "control"],
         "b",
-        lazy.spawn("betterlockscreen -l -- -e"),
+        lazy.spawn("loginctl lock-session"),
         desc="lock PC",
     ),
     # Screenshot
