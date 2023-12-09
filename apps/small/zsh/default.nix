@@ -166,6 +166,8 @@
       initExtraBeforeCompInit = ''
         setopt EXTENDED_GLOB         # 拡張GRUBの有効化(^: 否定、~: 除外)
         setopt BARE_GLOB_QUAL        # 条件付け検索の有効化
+        setopt MAGIC_EQUAL_SUBST     # cmd a=/to/pathの時に補完を効かせる
+        setopt HIST_IGNORE_SPACE     # 先頭にスペースがあるコマンドは履歴に残さない
       '';
 
       initExtra = ''
