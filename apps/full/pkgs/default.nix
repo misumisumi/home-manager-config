@@ -13,7 +13,6 @@
     element-desktop # matrix chat
     evince # PDF viewer
     ferdium # One place, Some webapp
-    firefox # Browser
     font-manager # font-manger
     gimp # image editor
     gnome.simple-scan # Scaner
