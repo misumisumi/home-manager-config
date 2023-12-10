@@ -36,7 +36,7 @@ def get_pinp_size_pos(init=True):
 @hook.subscribe.client_new
 async def move_speclific_apps(window):
     await asyncio.sleep(0.01)
-    if window.name == "Spotify":
+    if window.name == "spotify":
         window.togroup("0-media")
     elif window.name in [
         "Picture in picture",
@@ -57,7 +57,7 @@ async def move_speclific_apps(window):
             borderwidth=GLOBAL.border,
             bordercolor=GLOBAL.c_normal["cyan"],
             above=False,
-            margin=None
+            margin=None,
         )
         keep_focus_window_in_tiling()
     elif window.name == "WaveSurfer 1.8.8p5":
@@ -103,7 +103,7 @@ def force_pinp(qtile):
             borderwidth=GLOBAL.border,
             bordercolor=GLOBAL.c_normal["cyan"],
             above=False,
-            margin=None
+            margin=None,
         )
         PINP_WINDOW = {"idx": idx, "window": window}
         keep_focus_window_in_tiling()
@@ -164,7 +164,7 @@ def move_pinp(qtile, pos):
             borderwidth=GLOBAL.border,
             bordercolor=GLOBAL.c_normal["cyan"],
             above=False,
-            margin=None
+            margin=None,
         )
         PINP_WINDOW["window"].cmd_bring_to_front()
         keep_focus_window_in_tiling(win)
@@ -296,9 +296,7 @@ def move_n_screen_group(qtile, idx):
     groups = qtile.groups
     s_idx = qtile.current_screen.index
     if idx < GROUP_PER_SCREEN:
-        qtile.current_window.togroup(
-            groups[int(idx + GROUP_PER_SCREEN * s_idx)].name, switch_group=True
-        )
+        qtile.current_window.togroup(groups[int(idx + GROUP_PER_SCREEN * s_idx)].name, switch_group=True)
 
 
 @lazy.function
@@ -322,11 +320,7 @@ def move_cycle_screen(qtile, backward=False):
         if backward:
             to_idx = n_screen - 1 if idx == 0 else idx - 1
             to_group = qtile.groups.index(qtile.current_screen.group) - GROUP_PER_SCREEN
-            to_group = (
-                to_group
-                if to_group >= 0
-                else to_group + (GROUP_PER_SCREEN * GLOBAL.num_screen)
-            )
+            to_group = to_group if to_group >= 0 else to_group + (GROUP_PER_SCREEN * GLOBAL.num_screen)
 
         else:
             to_idx = 0 if idx + 1 == n_screen else idx + 1
@@ -363,9 +357,7 @@ def attach_screen(qtile, pos):
     if pos == "delete":
         subprocess.run("xrandr --output HDMI-A-0 --off", shell=True)
         subprocess.run(
-            "feh --bg-fill {}".format(
-                GLOBAL.home.joinpath("Pictures", "wallpapers", "main01.jpg")
-            ),
+            "feh --bg-fill {}".format(GLOBAL.home.joinpath("Pictures", "wallpapers", "main01.jpg")),
             shell=True,
         )
     else:
@@ -388,6 +380,4 @@ def capture_screen(qtile, is_clipboard=False):
     if is_clipboard:
         Qtile.cmd_spawn(qtile, "flameshot screen -n {} -c".format(idx))
     else:
-        Qtile.cmd_spawn(
-            qtile, "flameshot screen -n {} -p {}".format(idx, GLOBAL.capture_path)
-        )
+        Qtile.cmd_spawn(qtile, "flameshot screen -n {} -p {}".format(idx, GLOBAL.capture_path))
