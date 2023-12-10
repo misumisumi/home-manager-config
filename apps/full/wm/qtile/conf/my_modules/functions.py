@@ -36,9 +36,9 @@ def get_pinp_size_pos(init=True):
 @hook.subscribe.client_new
 async def move_speclific_apps(window):
     await asyncio.sleep(0.01)
-    if window.name == "spotify":
-        window.togroup("0-media")
-    elif window.name in [
+    # if window.name == "spotify":
+    #     window.togroup("0-media")
+    if window.name in [
         "Picture in picture",
         "ピクチャー イン ピクチャー",
         "Picture-in-Picture",

@@ -1,14 +1,12 @@
 """layout and group"""
-from libqtile import qtile
-from libqtile.backend import base
-from libqtile.config import Group, Match, ScratchPad, DropDown
-from libqtile.log_utils import logger
-
 import re
 
-from my_modules.layouts import layout1, layout2, layout3, layout4
+from libqtile import qtile
+from libqtile.backend import base
+from libqtile.config import DropDown, Group, Match, ScratchPad
+from libqtile.log_utils import logger
 from my_modules.global_config import GLOBAL
-
+from my_modules.layouts import layout1, layout2, layout3, layout4
 
 _rule_code = [
     {"wm_class": "code"},
@@ -19,7 +17,11 @@ _rule_browse = [{"wm_class": "vivaldi-stable"}, {"wm_class": "firefox"}]
 # _rule_paper = {wm_class:"org.pwmt.zathura"}
 _rule_paper = []
 
-_rule_analyze = [{"title": "WaveSurfer 1.8.8p5"}, {"wm_class": "thunar"}, {"wm_class": "nemo"}]
+_rule_analyze = [
+    {"title": "WaveSurfer 1.8.8p5"},
+    {"wm_class": "thunar"},
+    {"wm_class": "nemo"},
+]
 
 _rule_full = [
     {"wm_class": "Steam"},
@@ -45,6 +47,7 @@ _rule_sns = [
 ]
 
 _rule_media = [
+    {"wm_class": "spotify"},
     {"wm_class": "pavucontrol"},
     {"wm_class": ".blueman-manager-wrapped"},
 ]
