@@ -10,11 +10,6 @@
 , useNixOSWallpaper ? true
 , ...
 }: {
-  home.activation = {
-    betterlockscreenActivatioinAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ${pkgs.betterlockscreen}/bin/betterlockscreen} -u ${config.home.homeDirectory}/Pictures/wallpapers/fixed/0_main.png
-    '';
-  };
   services = {
     screen-locker.xautolock.enable = true;
     betterlockscreen = {
