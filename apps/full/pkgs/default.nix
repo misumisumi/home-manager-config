@@ -28,7 +28,6 @@
     pympress # PDF reader for presentations
     remmina # Remote desktop client
     slack # chat
-    spotify # Music Streaming
     spotify-tui # CLI tools for spotify
     unityhub
     vrc-get-latest # Unofficial VRChat package manager

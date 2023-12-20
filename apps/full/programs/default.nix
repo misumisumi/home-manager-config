@@ -5,6 +5,7 @@
   ./obs-studio.nix
   ./programs.nix
   ./rofi.nix
+  ./spicetify.nix
   ./vivaldi.nix
   ./zathura.nix
 ]
