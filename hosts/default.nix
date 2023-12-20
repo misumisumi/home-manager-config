@@ -21,6 +21,7 @@ let
       modules = [
         inputs.nur.nixosModules.nur
         inputs.sops-nix.homeManagerModules.sops
+        inputs.spicetify-nix.homeManagerModule
 
         inputs.flakes.nixosModules.for-hm
         inputs.nvimdots.nixosModules.nvimdots

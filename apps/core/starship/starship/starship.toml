@@ -11,9 +11,10 @@ $git_status\
 
 
 right_format = """
+[](fg:terminal_dark)\
 $cmd_duration\
 $conda\
-$dart \
+$dart\
 $golang\
 $nix_shell\
 $nodejs\
@@ -74,7 +75,7 @@ show_always = false
 [cmd_duration]
 min_time = 2000
 style = "fg:fg bg:terminal_dark"
-format = "[](fg:terminal_dark)[ 󱦟 took $duration ]($style)"
+format = "[ 󱦟 took $duration ]($style)"
 
 [git_branch]
 symbol = " "
