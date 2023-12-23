@@ -13,6 +13,7 @@ in
       theme = spicePkgs.themes.Nightlight;
 
       enabledExtensions = with spicePkgs.extensions; [
+        copyToClipboard
         fullAppDisplay
         hidePodcasts
         history
