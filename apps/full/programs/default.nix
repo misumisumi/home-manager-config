@@ -1,4 +1,5 @@
 [
+  ./firefox.nix
   ./gpg.nix
   ./mpv.nix
   ./nemo.nix
