@@ -30,7 +30,7 @@
     slack # chat
     spotify-tui # CLI tools for spotify
     unityhub
-    vrc-get-latest # Unofficial VRChat package manager
+    vrc-get # Unofficial VRChat package manager
     vulkan-tools # vulkan utility
     wavesurfer # pkgs from Sumi-Sumi/flakes
     yabridge # A modern and transparent way to use Windows VST2 and VST3 plugins on Linux
