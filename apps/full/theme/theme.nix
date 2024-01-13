@@ -1,7 +1,11 @@
-/*
-  Uniformed look for Qt and GTK applications
-*/
-{ pkgs, ... }: {
+# Uniformed look for Qt and GTK applications
+{ pkgs, ... }:
+let
+  extraConfig = {
+    gtk-menu-images = true;
+  };
+in
+{
   gtk = {
     enable = true;
     font = {
@@ -20,6 +24,8 @@
       name = "Adapta-Nokto-Eta";
       package = pkgs.adapta-gtk-theme;
     };
+    gtk3.extraConfig = extraConfig;
+    gtk4.extraConfig = extraConfig;
   };
   qt = {
     enable = true;
