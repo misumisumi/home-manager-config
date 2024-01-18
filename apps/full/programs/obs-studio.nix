@@ -13,7 +13,7 @@ with lib; {
         [
           looking-glass-obs
           obs-pipewire-audio-capture
-          droidcam-obs-plugin
+          droidcam-obs
         ]
         ++ optional (hostname != "general") (
           obs-ndi.override {
