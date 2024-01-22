@@ -13,7 +13,7 @@ with builtins; {
   options = {
     dotfilesActivation = lib.mkEnableOption "Activate dotfiles";
   };
-  imports = [
+  imports = lib.optionals (scheme != "test") [
     ../apps/core/bash
     ../apps/core/btop
     ../apps/core/fzf
@@ -28,9 +28,9 @@ with builtins; {
     ../apps/core/tmux
     ../apps/core/wezterm
     ../apps/core/xdg
-  ] ++ lib.optional (pathExists ../users/${user}) ../users/${user}
-  ++ lib.optional (pathExists ../hosts/${hostname}) ../hosts/${hostname}
-  ++ lib.optionals (scheme != "core") [
+  ] ++ lib.optional (scheme != "test" && pathExists ../users/${user}) ../users/${user}
+  ++ lib.optional (scheme != "test" && pathExists ../hosts/${hostname}) ../hosts/${hostname}
+  ++ lib.optionals (scheme != "test" && scheme != "core") [
     ../apps/small/direnv
     ../apps/small/editorconfig
     ../apps/small/neovim
@@ -63,9 +63,10 @@ with builtins; {
     programs.home-manager.enable = true;
     assertions = [
       {
-        assertion = scheme == "core" || scheme == "small" || scheme == "medium" || scheme == "full";
+        assertion = scheme == "test" || scheme == "core" || scheme == "small" || scheme == "medium" || scheme == "full";
         message = ''
-          Set scheme 'core' or 'small' or 'full'.
+          Set scheme `test` or 'core' or 'small' or 'full'.
+          test: not use home-manager config
           core: shell=bash, core utils, no editor, assuming diskless server
           small: shell=zsh, and neovim,
           medium: shell=zsh, daily use such as pandoc and texlive etc.., without GUI apps
