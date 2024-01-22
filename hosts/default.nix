@@ -10,7 +10,7 @@ let
     , scheme ? ""
     , homeDirectory ? ""
     , useNixOSWallpaper ? true
-    , wm ? "nonj"
+    , wm ? "none"
     }:
     let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
@@ -54,5 +54,11 @@ in
     hostname = "system";
     user = "hm-user";
     scheme = "full";
+  };
+  qtile = settings {
+    hostname = "system";
+    user = "hm-user";
+    scheme = "full";
+    wm = "qtile";
   };
 }

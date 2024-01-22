@@ -35,23 +35,30 @@
   home = {
     packages = with pkgs; [ betterlockscreen ];
     file = lib.optionalAttrs useNixOSWallpaper
-      (builtins.listToAttrs (
-        map (x: { name = "${config.home.homeDirectory}/Pictures/wallpapers/${x}"; value = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath}"; } [
+      (builtins.listToAttrs
+        (map
+          (x: {
+            name = "${config.home.homeDirectory}/Pictures/wallpapers/${x}";
+            value = {
+              enable = true;
+              source = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+            };
+          }) [
           "fixed/0_main.png"
           "fixed/1_main.png"
           "unfixed/main.png"
           "background.png"
           "screen_saver.png"
-        ]))
+        ])
       )
     //
-    lib.optionalAttrs (!useNixOSWallpaper) lib.mapAttrs'
+    lib.optionalAttrs (!useNixOSWallpaper) (lib.mapAttrs'
       (f: _:
         lib.nameValuePair "${config.home.homeDirectory}/Pictures/wallpapers/${f}" {
           enable = true;
           source = ./wallpapers/${f};
         })
-      (builtins.readDir ./wallpapers);
+      (builtins.readDir ./wallpapers));
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
