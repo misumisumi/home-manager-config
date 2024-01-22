@@ -37,6 +37,9 @@
 # Patch from https://github.com/NixOS/nixpkgs/pull/211600
 { nixpkgs-stable, ... }:
 final: prev: {
+  obs-studio-plugins = prev.obs-studio-plugins // {
+    inherit (nixpkgs-stable.obs-studio-plugins) obs-ndi;
+  };
   pythonPackagesOverlays = (prev.pythonPackagesOverlays or [ ]) ++ [
     (pfinal: pprev: {
       qtile = pprev.qtile.overridePythonAttrs (old: {
