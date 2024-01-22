@@ -54,7 +54,7 @@ with builtins; {
         ../apps/full/xdg-mime
       ]
   )
-  ++ lib.optionals (scheme == "full" && pathExists ../apps/full/wm/${wm}) [
+  ++ lib.optionals (wm != "" && pathExists ../apps/full/wm/${wm}) [
     ../apps/full/xsession
     ../apps/full/wm/${wm}
   ]
