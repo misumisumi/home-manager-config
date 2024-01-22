@@ -171,6 +171,9 @@
       '';
 
       initExtra = ''
+        # Enable bash completion
+        autoload -U bashcompinit && bashcompinit
+
         set vi-cmd-mode-string "\1\e[?8c\2"
         set vi-ins-mode-string "\1\e[?0c\2"
         # qtileやkittyなどwrap環境内で作業することが必要な時に依存関係のPATHを外す処理
