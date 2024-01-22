@@ -36,7 +36,7 @@ jobs:
           skipPush: true
 
       - name: Run flake build
-        run: nix run "github:nix-community/home-manager" -- build --dry-run --flake ".#full"
+        run: nix run "github:nix-community/home-manager" -- build --dry-run --flake ".#test"
 
       - name: Save PR number
         run: echo $GITHUB_REF | sed -e 's/[^0-9]//g' > pr-number.txt

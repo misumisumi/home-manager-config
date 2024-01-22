@@ -55,8 +55,8 @@ in
     user = "hm-user";
     scheme = "full";
   };
-  qtile = settings {
-    hostname = "system";
+  test = settings {
+    hostname = "liveimg";
     user = "hm-user";
     scheme = "full";
     wm = "qtile";
