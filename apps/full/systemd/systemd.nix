@@ -2,6 +2,10 @@
 # Please read each description
 { pkgs, ... }: {
   systemd.user.services = {
+    setxkbmap.Service = {
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
     polkit-gnome-authentication-agent-1 = {
       Unit = {
         Description = "polkit-gnome-authentication-agent-1";
