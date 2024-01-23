@@ -7,8 +7,8 @@
     packages = with pkgs; [ ranger trash-cli ];
     activation = {
       rangerActivatioinAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        if [ ! -d ${config.home.homeDirectory}/.config/ranger ]; then
-          mkdir ${config.home.homeDirectory}/.config/ranger
+        if [ ! -d ${config.xdg.configHome}/ranger ]; then
+          mkdir ${config.xdg.configHome}/ranger
         fi
       '';
     };
