@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , ...
 }:
 {
@@ -14,5 +15,12 @@
       sox # CLI Sound Editor
       wavesurfer # pkgs from Sumi-Sumi/flakes
     ];
+  };
+  sops.secrets = {
+    "univ" = {
+      path = "${config.home.homeDirectory}/.ssh/conf.d/hosts/univ";
+      sopsFile = ../../sops/secrets/ssh/univ;
+      format = "binary";
+    };
   };
 }
