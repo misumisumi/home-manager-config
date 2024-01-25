@@ -7,8 +7,10 @@
       darkreader
       onetab
       privacy-badger
+      translate-web-pages
       ublacklist
       ublock-origin
+      videospeed
       vimium
     ];
   };
