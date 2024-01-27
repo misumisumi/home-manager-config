@@ -123,6 +123,7 @@ local function with_mod()
             mods = string.format("%s", mod),
             action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
         },
+        { key = "c", mods = string.format("CTRL|%s", mod), action = act.CloseCurrentPane({ confirm = true }) },
         { key = "w", mods = string.format("CTRL|%s", mod), action = act.CloseCurrentTab({ confirm = true }) },
         {
             key = "x",
@@ -202,6 +203,7 @@ local config = {
             mods = "CTRL",
             action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
         },
+        { key = "c", mods = "CTRL", action = act.CloseCurrentPane({ confirm = true }) },
         { key = "w", mods = "CTRL|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
         { key = '"', mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
         { key = "0", mods = "CTRL", action = act.ResetFontSize },

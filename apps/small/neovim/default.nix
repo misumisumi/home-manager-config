@@ -18,6 +18,9 @@
         nixpkgs-fmt
         statix
       ];
+      extraPython3Packages = ps: with ps; [
+        jupynium
+      ];
       nvimdots = {
         enable = true;
         setBuildEnv = true;
