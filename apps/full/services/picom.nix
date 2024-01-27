@@ -30,6 +30,8 @@
         "100:class_g = 'fcitx' && !focused"
         "100:class_g = 'pentablet' && focused"
         "100:class_g = 'pentablet' && !focused"
+        "100:class_g = 'PenTablet' && focused"
+        "100:class_g = 'PenTablet' && !focused"
         "100:class_g = 'Looking Glass (client)' && focused"
         "100:class_g = 'Looking Glass (client)' && !focused"
         "100:class_g = 'Picture in picture' && focused"

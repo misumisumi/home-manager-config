@@ -1,11 +1,8 @@
 """layout"""
 from libqtile import layout
 from libqtile.config import Match
-
-from my_modules.global_config import GLOBAL
-
 from libqtile.log_utils import logger
-
+from my_modules.global_config import GLOBAL
 
 _settings = {
     "border_width": GLOBAL.border,
@@ -30,7 +27,7 @@ layout1 = [
         insert_position=1,
         margin=GLOBAL.margin,
         margin_on_single=GLOBAL.margin,
-        split=False
+        split=False,
     ),
 ]
 # For code
@@ -42,7 +39,7 @@ layout2 = [
         new_client_position="after_current",
         single_border_width=GLOBAL.border,
         margin=GLOBAL.margin,
-        single_margin=GLOBAL.margin
+        single_margin=GLOBAL.margin,
     ),
     layout.Columns(
         **_settings,
@@ -54,7 +51,7 @@ layout2 = [
         insert_position=1,
         margin=GLOBAL.margin,
         margin_on_single=GLOBAL.margin,
-        split=False
+        split=False,
     ),
 ]
 
@@ -66,7 +63,7 @@ layout3 = [
         new_client_position="bottom",
         single_border_width=GLOBAL.border,
         margin=GLOBAL.margin,
-        single_margin=GLOBAL.margin
+        single_margin=GLOBAL.margin,
     ),
     layout.Columns(
         **_settings,
@@ -78,7 +75,7 @@ layout3 = [
         insert_position=1,
         margin=GLOBAL.margin,
         margin_on_single=GLOBAL.margin,
-        split=False
+        split=False,
     ),
 ]
 # For full
@@ -103,8 +100,9 @@ floating_layout = layout.Floating(
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(wm_class="pentablet"),
+        Match(wm_class="PenTablet"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
     ],
-    **_floating_settings
+    **_floating_settings,
 )
