@@ -10,7 +10,7 @@ jobs:
     outputs:
       pr-number: ${{ steps.update.outputs.pull-request-number }}
     steps:
-      - uses: actions/checkout@v3.3.0
+      - uses: actions/checkout@v4
 
       - name: Generate GitHub Apps token
         id: generate
