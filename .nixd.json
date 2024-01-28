@@ -9,7 +9,7 @@
         ],
         "target": {
             "args": [],
-            "installable": ".#nixosConfigurations.cui.options"
+            "installable": ".#homeConfigurations.test.options"
         }
     }
 }
