@@ -2,6 +2,16 @@
 
 This is dotfiles managed with [home-manager](https://github.com/nix-community/home-manager).
 
+Please refer to the following directory for installed packages and settings.
+
+```
+└── apps
+   ├── core     # Minimal configuration of CUI environment
+   ├── full     # Desktop environment
+   ├── medium   # Configuring LaTeX
+   └── small    # Configuring neovim and zsh
+```
+
 ## Usage
 
 ```
