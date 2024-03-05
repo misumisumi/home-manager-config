@@ -2,9 +2,9 @@
   programs.mpv = {
     enable = true;
     config = {
+      keepaspect = false;
       osd-fractions = true;
       osd-level = 2;
-      no-keepaspect = true;
       ytdl-format = "bestvideo+bestaudio";
     };
   };
