@@ -1,4 +1,5 @@
 """custom function for qtile"""
+
 import asyncio
 import subprocess
 
@@ -38,7 +39,7 @@ async def move_speclific_apps(window):
     await asyncio.sleep(0.01)
     # if window.name == "spotify":
     #     window.togroup("0-media")
-    if window.name in [
+    if window.name.split(" - ")[-1] in [
         "Picture in picture",
         "ピクチャー イン ピクチャー",
         "Picture-in-Picture",
