@@ -108,7 +108,7 @@ local config = {
         { family = "UDEV Gothic 35NFLG", weight = "Medium" },
         "FiraCode Nerd Font",
     }),
-    font_size = 11.0,
+    font_size = 10.0,
     enable_scroll_bar = true,
     window_padding = {
         left = 0,
