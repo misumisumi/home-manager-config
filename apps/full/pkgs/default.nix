@@ -27,6 +27,7 @@
     juce # VST plugin flamework
     krita # painting tool
     libreoffice # Office
+    looking-glass-client # A KVM Frame Relay (KVMFR) implementation
     mesa-demos # OpenGL utility
     nomacs # Image Viewer
     pympress # PDF reader for presentations
