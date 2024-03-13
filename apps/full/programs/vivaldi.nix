@@ -10,8 +10,9 @@
       hunspellDictsChromium.en_US
     ];
     extensions = [
-      { id = "joaffhoebddkohkafembmdkfmmcgmepj"; } # better vrchat dot com
+      { id = "joaffhoebddkohkafembmdkfmmcgmepj"; } # better vrchat
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+      { id = "bniigfmpkmcabajbkelbmphoelijoang"; } # clean-spam-link-tweet
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
       { id = "elfdpkmfllnhhgnicaaeacbilcallpbd"; } # flow chat for youtube live
       { id = "ghbmnnjooekpmoecnnnilnnbdlolhkhi"; } # google docs offline
@@ -19,7 +20,6 @@
       { id = "ophjlpahpchlmihnnnihgmmeilfjmjjc"; } # line
       { id = "chphlpgkkbolifaimnlloiipkdnihall"; } # one tab
       { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # privacy badger
-      { id = "mheleidccioamimekojienbdfclcbaan"; } # q accelerator
       { id = "ejcfdikabeebbgbopoagpabbdokepnff"; } # rajiko
       { id = "niloccemoadcdkdjlinkgdfekeahmflj"; } # save to pocket
       { id = "pncfbmialoiaghdehhbnbhkkgmjanfhe"; } # ublock list
