@@ -12,7 +12,7 @@
     zsh = {
       enable = true;
 
-      enableAutosuggestions = false;
+      autosuggestion.enable = false;
       enableCompletion = false;
       autocd = true;
 
