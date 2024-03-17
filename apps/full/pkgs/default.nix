@@ -33,7 +33,6 @@
     pympress # PDF reader for presentations
     remmina # Remote desktop client
     slack # chat
-    spotify-tui # CLI tools for spotify
     unityhub
     vrc-get # Unofficial VRChat package manager
     vulkan-tools # vulkan utility
