@@ -1,0 +1,13 @@
+[default]
+[default.extend-words]
+hda = "hda"
+
+[files]
+extend-exclude = [
+    "apps/core/ranger",
+    "apps/full/ime/skk-config/libskk/rom-kana/default.json",
+    "apps/full/wm/xmonad/",
+    "flake.lock",
+    "patches",
+    "sops",
+]
