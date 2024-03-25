@@ -5,7 +5,7 @@
   home = {
     packages = with pkgs;
       [
-        bc # GNU calculater
+        bc # GNU calculator
         bintools # Manipulating binaries
         btop # System monitor
         coreutils-full # GNU coreutils

@@ -25,7 +25,7 @@ with lib; {
   xsession =
     {
       windowManager = {
-        # Not launch using dbus-launch because systemd manage dbus-user-mesage since ver.226
+        # Not launch using dbus-launch because systemd manage dbus-user-message since ver.226
         command = ''
           ${pkgs.qtile}/bin/qtile start -b x11
         ''; # You maybe have some probrem (ex fcitx5...) if you launch using it.

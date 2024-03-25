@@ -1,4 +1,5 @@
-"""This is paramater"""
+"""This is Global config"""
+
 import dataclasses
 import os
 from pathlib import Path
@@ -21,13 +22,9 @@ class Global:
     if not capture_path.exists():
         os.mkdir(capture_path)
     if laptop or vm:
-        wallpapers = list(
-            home.joinpath("Pictures", "wallpapers", "fixed").glob("*.png")
-        )
+        wallpapers = list(home.joinpath("Pictures", "wallpapers", "fixed").glob("*.png"))
     else:
-        wallpapers = list(
-            home.joinpath("Pictures", "wallpapers", "unfixed").glob("*.png")
-        )
+        wallpapers = list(home.joinpath("Pictures", "wallpapers", "unfixed").glob("*.png"))
     wallpapers.sort()
     screen_saver = str(home.joinpath("Pictures", "wallpapers", "screen_saver.png"))
 
