@@ -29,10 +29,9 @@ in
   };
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gtk3";
     style = {
-      package = pkgs.arc-kde-theme;
-      name = "bb10dark";
+      name = "adwaita-dark";
     };
   };
 }
