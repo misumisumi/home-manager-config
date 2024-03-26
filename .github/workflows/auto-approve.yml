@@ -39,5 +39,7 @@ jobs:
           status_check=$(gh pr view ${{ steps.pr.outputs.result }} --json statusCheckRollup)
           completed=$(echo $status_check | jq -r '.statusCheckRollup | [.[] | select(.status=="COMPLETED")]')
           if [ $(cat $completed | jq -r '. | length' ) -eq $(cat $status_check | jq -r '.statusCheckRollup | length') ]; then
-            [[ $(cat $completed | jq '[.[].conclusion] | all(.=="SUCCESS" or "NEUTRAL")') == true ]] && gh pr review --approve ${{ steps.pr.outputs.result }}
+            if [ $(cat $completed | jq '[.[].conclusion] | all(.=="SUCCESS" or "NEUTRAL")') == true ]; then
+              gh pr review --approve ${{ steps.pr.outputs.result }} --repo ${{ github.repository }}
+            end
           end
