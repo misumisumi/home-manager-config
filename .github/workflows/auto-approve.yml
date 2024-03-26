@@ -45,7 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          exit $(gh pr view ${{ steps.pr.outputs.result }} --json statusCheckRollup | jq -r '[.statusCheckRollup.[].conclusion] | all(.=="SUCCESS" or "NEUTRAL)')
+          exit $(gh pr view ${{ steps.pr.outputs.result }} --json statusCheckRollup | jq -r '[.statusCheckRollup.[].conclusion] | all(.=="SUCCESS" or "NEUTRAL")')
 
       - name: Always not approve
         id: always-not-approve
