@@ -6,7 +6,7 @@ updates:
       # Check for updates to GitHub Actions every monday
       interval: "weekly"
       day: "saturday"
-      time: "3:00"
+      time: "03:00"
       timezone: "Asia/Tokyo"
     groups:
       angular:
