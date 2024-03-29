@@ -8,8 +8,6 @@ permissions: read-all
 jobs:
   update-repo:
     runs-on: ubuntu-latest
-    outputs:
-      pr-number: ${{ steps.update.outputs.pull-request-number }}
     steps:
       - uses: actions/checkout@v4
 
