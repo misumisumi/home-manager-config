@@ -4,6 +4,7 @@ on:
     paths:
       - "**.nix"
 
+permissions: read-all
 jobs:
   build-check:
     runs-on: ubuntu-latest

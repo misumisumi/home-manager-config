@@ -5,6 +5,7 @@ on:
     types:
       - completed
 
+permissions: write-all
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
