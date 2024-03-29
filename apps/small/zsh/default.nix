@@ -8,6 +8,9 @@
     ../../../modules/zinit.nix
   ];
   home.packages = with pkgs; [ nix-zsh-completions ];
+  xdg.configFile = {
+    "zsh-abbr/user-abbreviations".source = ./user-abbreviations;
+  };
   programs = {
     zsh = {
       enable = true;
@@ -62,7 +65,7 @@
             "marlonrichert/zsh-autocomplete"
           ];
           "wait'0b' lucid nocd depth=1 light-mode" = [
-            "atload'abbr_init' olets/zsh-abbr"
+            "olets/zsh-abbr"
           ];
           "wait'!1a' lucid blockf light-mode" = [
             "zdharma-continuum/fast-syntax-highlighting"
@@ -96,56 +99,6 @@
             if [[ $options[zle] = on ]]; then
               . ${pkgs.fzf}/share/fzf/completion.zsh
               . ${pkgs.fzf}/share/fzf/key-bindings.zsh
-            fi
-          }
-          # historyに元のコマンドが残るalias
-          function abbr_init() {
-            abbr_cmds=(
-              # virtual env
-              crflake="nix flake new -t github:nix-community/nix-direnv"
-              dirall="direnv allow"
-              dirrev="direnv revoke"
-              venv='source venv/bin/activate'
-              # podman and buildah
-              p='podman'
-              ppl='podman pull'
-              ppld='podman pull docker.io/'
-              pps='podman ps'
-              pimgs='podman images'
-              prun='podman run'
-              bud='buildah bud'
-              # git
-              lg='lazygit'
-              g='git'
-              ga='git add'
-              gc='git commit'
-              gac='git add -A && git commit'
-              gsh='git stash'
-              gst='git status'
-              gbr='git branch'
-              gco='git checkout'
-              gdf='git diff'
-              gmr='git merge'
-              grb='git rebase'
-              gl='git log'
-              glo='git log --oneline'
-              ggr='git grep'
-              gsw='git switch'
-              gpl='git pull'
-              gpu='git push'
-              gget='ghq get'
-              # nixos-rebuild
-              nixosts='sudo nixos-rebuild test --flake'
-              nixossw='sudo nixos-rebuild switch --flake'
-            )
-            [ ! -d "''${XDG_CONFIG_HOME}/zsh-abbr" ] && mkdir -p "''${XDG_CONFIG_HOME}/zsh-abbr"
-            if [[ ''${#abbr_cmds[@]} == $(cat ''${XDG_CONFIG_HOME}/zsh-abbr/user-abbreviations | wc -l) ]]; then
-              abbr load
-            else
-              for cmd in "''${abbr_cmds[@]}"
-              do
-                abbr $cmd
-              done
             fi
           }
         '';
