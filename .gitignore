@@ -2,3 +2,5 @@
 result
 *.list
 body.md
+.secrets
+.vars
