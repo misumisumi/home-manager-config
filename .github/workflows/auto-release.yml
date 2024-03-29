@@ -10,7 +10,7 @@ permissions:
 jobs:
   user-pr:
     runs-on: ubuntu-latest
-    if: github.actor != 'app/update-flake'
+    if: ${{ ! endsWith(github.actor, "[bot]") }}
     steps:
       - uses: tibdex/github-app-token@v1
         id: generate_token
