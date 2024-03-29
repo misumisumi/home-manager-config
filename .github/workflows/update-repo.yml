@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: tibdex/github-app-token@v1
+      - uses: tibdex/github-app-token@v2
         id: generate_token
         with:
           app_id: ${{ secrets.APP_ID }}
@@ -21,7 +21,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - uses: DeterminateSystems/update-flake-lock@v20
+      - uses: DeterminateSystems/update-flake-lock@v21
         id: update
         with:
           token: ${{ steps.generate_token.outputs.token }}
