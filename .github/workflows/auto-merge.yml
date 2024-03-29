@@ -25,10 +25,10 @@ jobs:
 
   merge-pr-created-by-bot:
     runs-on: ubuntu-latest
-    if: ->
+    if: >-
       contains(fromJSON('[
-      "app/release-please-action",
-      "app/update-flake"
+        "app/release-please-action",
+        "app/update-flake"
       ]'), github.actor)
     steps:
       - name: Enable auto-merge for bot PRs
