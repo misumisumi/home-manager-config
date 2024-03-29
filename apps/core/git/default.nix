@@ -62,6 +62,7 @@ in
   xdg = {
     configFile = {
       "git/message".source = ./gitmessage;
+      "git/commitlintrc.json".source = ./commitlintrc.json;
     };
   };
 }
