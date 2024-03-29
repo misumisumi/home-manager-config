@@ -1,0 +1,93 @@
+name: Auto release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  user-pr:
+    runs-on: ubuntu-latest
+    if: github.actor != 'app/update-flake'
+    steps:
+      - uses: tibdex/github-app-token@v1
+        id: generate_token
+        with:
+          app_id: ${{ secrets.RELEASE_PLEASE_ACTION_ID }}
+          private_key: ${{ secrets.RELEASE_PLEASE_ACTION_PRIVATE_KEY }}
+
+      - uses: google-github-actions/release-please-action@v4
+        with:
+          token: ${{ secrets.generate_token.outputs.token }}
+
+  update-flake-pr:
+    runs-on: ubuntu-latest
+    if: github.actor == 'app/update-flake'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: current-nixpkgs
+
+      - name: Fetch release tag created by update-flake
+        id: fetch-tag
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          fetch_tag=""
+          gh release list --json name --jq ".[] | .name" | while read -r tag; do                                                                                                                                                                 󱦟 took 3s  
+            if [ $(gh release view $tag --json author --jq ".[] | .login") = "" ]; then
+              fetch_tag=$tag
+              break
+            fi
+          done
+          [[ ! $fetch_tag ]] && fetch_tag=$(gh release list --json name --jq ".[] | .name" | head -n1)
+          echo tag=$fetch_tag >> $GITHUB_OUTPUT
+
+      - uses: robinraju/release-downloader@v1
+        with:
+          tag: ${{ steps.fetch-tag.outputs.tag }}
+          fileName: installed-nixpkgs.list
+
+      - name: Check bump policy
+        id: bump-check
+        run: |
+          bump_systemd=$(grep -e "systemd-[0-9.]\+" current-nixpkgs.list
+          bump_linux=$(grep -e "linux-headers-[0-9.]\+" current-nixpkgs.list
+          if [[ $bump_systemd || $bump_linux ]]; then
+            echo bump="minor" >> $GITHUB_OUTPUT
+          else
+            echo bump="patch" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: mathieudutour/github-tag-action@v6
+        id: tag_version
+        with:
+          github_token: ${{ github.token }}
+          default_bump: "${{ steps.bump-check.outputs.bump }}"
+
+      - name: Create release note
+        run: |
+          cat <<EOF > body.md
+          ${{ steps.tag_version.outputs.changelog }}
+
+          ## Package list
+
+          <details><summary>open list</summary>
+
+          $(nix run "github:misumisumi/flakes#nixos-diff" -- -f installed-nixpkgs.list current-nixpkgs.list)
+
+          </details>
+          EOF
+
+      - name: Rename package list
+        run: |
+          rm installed-nixpkgs.list
+          mv current.list installed-nixpkgs.list
+
+      - uses: ncipollo/release-action@v1
+        if: steps.latest-ver.outputs.btd_ver != steps.latest-ver.outputs.now_btd_ver || steps.latest-ver.outputs.otd_ver != steps.latest-ver.outputs.now_otd_ver
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+          artifacts: "installed-nixpkgs.list"

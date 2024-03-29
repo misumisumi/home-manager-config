@@ -1,0 +1,28 @@
+name: Auto merge PRs created by bot
+on:
+  pull_request:
+
+jobs:
+  merge-pr-created-by-bot:
+    runs-on: ubuntu-latest
+    if: ->
+      contains(fromJSON('[
+      "dependabot[bot]"
+      "app/release-please-action",
+      "app/update-flake"
+      ]'), github.actor)
+    steps:
+      - uses: dependabot/fetch-metadata@v1
+        id: metadata
+        if: ${{ github.actor == 'dependabot[bot]' }}
+        with:
+          github-token: "${{ github.token }}"
+
+      - name: Enable auto-merge for bot PRs
+        if: contains(fromJSON('["minor", "patch"]'), steps.metadata.outputs.update-type)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --merge "$PR_URL"
