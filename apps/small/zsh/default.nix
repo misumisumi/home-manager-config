@@ -102,8 +102,9 @@
           function abbr_init() {
             abbr_cmds=(
               # virtual env
-              createnv="nix flake new -t github:nix-community/nix-direnv"
-              envall="direnv allow"
+              crflake="nix flake new -t github:nix-community/nix-direnv"
+              dirall="direnv allow"
+              dirrev="direnv revoke"
               venv='source venv/bin/activate'
               # podman and buildah
               p='podman'
@@ -119,19 +120,23 @@
               ga='git add'
               gc='git commit'
               gac='git add -A && git commit'
+              gsh='git stash'
               gst='git status'
               gbr='git branch'
               gco='git checkout'
               gdf='git diff'
+              gmr='git merge'
+              grb='git rebase'
               gl='git log'
+              glo='git log --oneline'
               ggr='git grep'
               gsw='git switch'
               gpl='git pull'
               gpu='git push'
               gget='ghq get'
               # nixos-rebuild
-              nixtest='sudo nixos-rebuild test --flake'
-              nixswitch='sudo nixos-rebuild switch --flake'
+              nixosts='sudo nixos-rebuild test --flake'
+              nixossw='sudo nixos-rebuild switch --flake'
             )
             [ ! -d "''${XDG_CONFIG_HOME}/zsh-abbr" ] && mkdir -p "''${XDG_CONFIG_HOME}/zsh-abbr"
             if [[ ''${#abbr_cmds[@]} == $(cat ''${XDG_CONFIG_HOME}/zsh-abbr/user-abbreviations | wc -l) ]]; then
