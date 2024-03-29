@@ -12,10 +12,10 @@
       vimAlias = true;
       vimdiffAlias = true;
       extraPackages = with pkgs; [
+        commitlint-with-module
         deno
         go
         nixd
-        nixpkgs-fmt
         statix
       ];
       extraPython3Packages = ps: with ps; [
