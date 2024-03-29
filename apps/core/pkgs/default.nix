@@ -3,6 +3,12 @@
 }:
 {
   home = {
+    shellAliases = {
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "grep -F --color=auto";
+      egrep = "grep -E --color=auto";
+    };
     packages = with pkgs;
       [
         bc # GNU calculator
@@ -29,11 +35,5 @@
         yq-go # YAML processor
         zip
       ];
-    shellAliases = {
-      ls = "ls --color=auto";
-      grep = "grep --color=auto";
-      fgrep = "grep -F --color=auto";
-      egrep = "grep -E --color=auto";
-    };
   };
 }
