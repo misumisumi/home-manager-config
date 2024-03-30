@@ -1,4 +1,4 @@
-name: Update repository
+name: update repository
 on:
   workflow_dispatch: # allows manual triggering
   schedule:

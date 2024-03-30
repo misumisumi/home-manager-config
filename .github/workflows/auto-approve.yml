@@ -1,7 +1,9 @@
-name: Auto approve
+name: auto approve
 on:
   workflow_run:
-    workflows: "*"
+    workflows:
+      - "build check"
+      - "reviewdog"
     types:
       - completed
 
@@ -10,6 +12,9 @@ jobs:
   auto-approve:
     runs-on: ubuntu-latest
     if: contains(fromJSON('["misumisumi"]'), github.actor)
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
     steps:
       # From https://github.com/orgs/community/discussions/25220#discussioncomment-8697399
       - uses: actions/github-script@v7
@@ -29,17 +34,8 @@ jobs:
             console.info("Pull request number is", pullRequestNumber)
             return pullRequestNumber
 
-      - name: Check workflow status
-        id: check-workflow-status
+      - name: Auto approve
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
           PR_NUM: ${{ steps.pr.outputs.result }}
         run: |
-          status_check=$(gh pr view "${PR_NUM}" --json statusCheckRollup)
-          completed=$(echo $status_check | jq -r '.statusCheckRollup | [.[] | select(.status=="COMPLETED")]')
-          if [ $(echo $completed | jq -r '. | length' ) -eq $(echo $status_check | jq -r '.statusCheckRollup | length') ]; then
-            if [ $(echo $completed | jq '[.[].conclusion] | all(.=="SUCCESS" or "NEUTRAL")') = true ]; then
-              gh pr review --approve "${PR_NUM}"
-            fi
-          fi
+          gh pr review --approve "${PR_NUM}"
