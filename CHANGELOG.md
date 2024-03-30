@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/misumisumi/home-manager-config/compare/v1.1.0...v1.1.1) (2024-03-30)
+
+
+### Bug Fixes
+
+* **wezterm:** remove &lt;C-P&gt; because use neovim ([46dcaf7](https://github.com/misumisumi/home-manager-config/commit/46dcaf76dbf6a4433377c1513c56c8fc516c96e4))
+
 ## [1.1.0](https://github.com/misumisumi/home-manager-config/compare/v1.0.1...v1.1.0) (2024-03-29)
 
 
