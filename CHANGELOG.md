@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/misumisumi/home-manager-config/compare/v1.1.1...v1.1.2) (2024-03-31)
+
+
+### Bug Fixes
+
+* **.nixd.json:** replace nixpkgs-fmt to statix ([a9237d2](https://github.com/misumisumi/home-manager-config/commit/a9237d28f3ea68f0b3ac934272208c5b2f9f3bc5))
+
 ## [1.1.1](https://github.com/misumisumi/home-manager-config/compare/v1.1.0...v1.1.1) (2024-03-30)
 
 
