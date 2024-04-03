@@ -155,11 +155,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1711729641,
-        "narHash": "sha256-xcjPAXBYPSilO5ON0ywFz7c9K9IlheJBNzTawyuZtJI=",
+        "lastModified": 1712133901,
+        "narHash": "sha256-fq3kWQA1IpwRaIHPJLXRcnVf2sdZYZgapQEOjO9bkZU=",
         "owner": "misumisumi",
         "repo": "flakes",
-        "rev": "c515c3fd00686699154321ab794a31d6c886ab88",
+        "rev": "e921649a6afc44a7107b6a8bf2d93b8255c352b9",
         "type": "github"
       },
       "original": {
@@ -310,15 +310,16 @@
     },
     "nvimdots": {
       "locked": {
-        "lastModified": 1711814707,
-        "narHash": "sha256-Fw6RZDCfsHStcu6KjCoRrxUyOZIW2T5wiFHRTNRWNKI=",
+        "lastModified": 1712127885,
+        "narHash": "sha256-/AASVxuTeBEjJlDqq8XRiqHJV5HGPxoME2I6aCxEuzQ=",
         "owner": "misumisumi",
         "repo": "nvimdots",
-        "rev": "24846876f16f9a335991daa25925c696fd433d1d",
+        "rev": "5b9b25ee5d310a75181d5de4bb0b4c1ddf28973d",
         "type": "github"
       },
       "original": {
         "owner": "misumisumi",
+        "ref": "home-manager",
         "repo": "nvimdots",
         "type": "github"
       }

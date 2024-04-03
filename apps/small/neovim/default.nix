@@ -12,10 +12,21 @@
       vimAlias = true;
       vimdiffAlias = true;
       extraPackages = with pkgs; [
-        commitlint-with-module
+        (commitlint.withPlugins (ps: with ps; [
+          "@commitlint/config-conventional"
+          commitlint-format-json
+        ]))
+        (textlint.withPlugins (ps: with ps; [
+          "@proofdict/textlint-rule-proofdict"
+          textlint-filter-rule-allowlist
+          textlint-filter-rule-comments
+          textlint-rule-preset-ja-spacing
+          textlint-rule-preset-ja-technical-writing
+        ]))
         deno
         go
         nixd
+        nixpkgs-fmt
         statix
       ];
       extraPython3Packages = ps: with ps; [
