@@ -23,8 +23,8 @@ let
         inputs.sops-nix.homeManagerModules.sops
         inputs.spicetify-nix.homeManagerModule
 
-        inputs.flakes.nixosModules.for-hm
-        inputs.nvimdots.nixosModules.nvimdots
+        inputs.flakes.homeManagerModules.default
+        inputs.nvimdots.homeManagerModules.nvimdots
         ../modules/dotfiles.nix
         ./init/nix
         {
