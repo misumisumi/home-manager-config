@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/misumisumi/home-manager-config/compare/v1.1.2...v1.1.3) (2024-04-08)
+
+
+### Bug Fixes
+
+* responding to module name changes and enable bind lazy-lock ([71e3d57](https://github.com/misumisumi/home-manager-config/commit/71e3d575d454a1aea9674b158538965cd5f3c26b))
+
 ## [1.1.2](https://github.com/misumisumi/home-manager-config/compare/v1.1.1...v1.1.2) (2024-03-31)
 
 
