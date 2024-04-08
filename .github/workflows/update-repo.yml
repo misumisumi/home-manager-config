@@ -5,9 +5,11 @@ on:
     - cron: "0 18 * * 5" # runs weekly on Saturday at 03:00 (JST)
 
 permissions: read-all
+
 jobs:
   update-repo:
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'misumisumi'
     steps:
       - uses: actions/checkout@v4
 
