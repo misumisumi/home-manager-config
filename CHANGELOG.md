@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.4](https://github.com/misumisumi/home-manager-config/compare/v1.1.3...v1.1.4) (2024-04-12)
+
+
+### Bug Fixes
+
+* **ssh:** add host ([a23d5aa](https://github.com/misumisumi/home-manager-config/commit/a23d5aafd17b764efa46754b88a3763bc449f54a))
+* **vivaldi:** add weblio英和 extention ([99ea8d7](https://github.com/misumisumi/home-manager-config/commit/99ea8d74f26137a5706c5a253fa2d1221bfd78e3))
+
 ## [1.1.3](https://github.com/misumisumi/home-manager-config/compare/v1.1.2...v1.1.3) (2024-04-08)
 
 
