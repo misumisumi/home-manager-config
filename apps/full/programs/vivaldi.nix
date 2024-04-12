@@ -27,6 +27,7 @@
       { id = "nffaoalbilbmmfgbnbgppjihopabppdk"; } # video speed controller
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
       { id = "diapeboihmphompedonjjbmkbhflmcek"; } # vrc url pasteExtension
+      { id = "oingodpdjohhkelnginmkagmkbplgema"; } # weblioポップアップ英和辞典
       { id = "ekhagklcjbdpajgpjgmbionohlpdbjgc"; } # zotero connector
       {
         id = "bolggfoncklhniejomgplkjcllmnonbh";
