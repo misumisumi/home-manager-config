@@ -97,8 +97,7 @@
           function zvm_after_init() {
             # Binding keys for zsh-abbr
             if [[ $options[zle] = on ]]; then
-              . ${pkgs.fzf}/share/fzf/completion.zsh
-              . ${pkgs.fzf}/share/fzf/key-bindings.zsh
+              eval "$(${pkgs.fzf}/bin/fzf --zsh)"
             fi
           }
         '';
