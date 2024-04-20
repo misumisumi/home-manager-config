@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.5](https://github.com/misumisumi/home-manager-config/compare/v1.1.4...v1.1.5) (2024-04-20)
+
+
+### Bug Fixes
+
+* **flake:** update stateVersion ([c57c541](https://github.com/misumisumi/home-manager-config/commit/c57c5417c60349dcf87e8ae2ff7cf992660bd962))
+* **ssh:** add host ([709b9f3](https://github.com/misumisumi/home-manager-config/commit/709b9f3736f4213514d49745be748e0328ac8674))
+* **zsh:** fix init fzf ([81dcc21](https://github.com/misumisumi/home-manager-config/commit/81dcc21a9d61f86a611167072f3641a77bd8a4fb))
+
 ## [1.1.4](https://github.com/misumisumi/home-manager-config/compare/v1.1.3...v1.1.4) (2024-04-12)
 
 
