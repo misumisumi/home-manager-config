@@ -35,7 +35,7 @@
 
   outputs = inputs @ { self, flake-parts, ... }:
     let
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     in
     flake-parts.lib.mkFlake { inherit inputs; }
       {
