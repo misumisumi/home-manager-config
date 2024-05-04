@@ -1,9 +1,7 @@
 { config
 , lib
-, pkgs
 , user
 , hostname
-, stateVersion
 , scheme ? "small"
 , wm ? ""
 , homeDirectory ? ""
@@ -75,7 +73,6 @@ with builtins; {
       }
     ];
     home = {
-      inherit stateVersion;
       username = "${user}";
       homeDirectory = if homeDirectory == "" then "/home/${user}" else homeDirectory;
     };
