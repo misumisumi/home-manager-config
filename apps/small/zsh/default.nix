@@ -27,6 +27,7 @@
           "pkill *"
           "kill *"
           "history *"
+          "trans *"
         ];
         extended = true;
         save = 10000;

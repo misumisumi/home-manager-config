@@ -1,9 +1,6 @@
 # Alacritty conf
 let
-  font = "FiraCode Nerd Font";
-  size = 12.0;
-  # font = "Ricty Diminished with Fira Code";
-  # size = 14.0
+  font = "UDEV Gothic NFLG";
 in
 {
   programs = {
@@ -24,34 +21,34 @@ in
           };
           italic = {
             family = font;
-            style = "Oblique";
+            style = "Italic";
           };
-          inherit size;
+          size = 10;
         };
         colors = {
           primary = {
-            background = "#1f292e";
-            foreground = "#d8e1e6";
+            foreground = "#c0caf5";
+            background = "#24283b";
           };
           normal = {
-            black = "#01060e";
-            red = "#ff5252";
-            green = "#4db69f";
-            yellow = "#c9bc0e";
-            blue = "#008fc2";
-            magenta = "#cf00ac";
-            cyan = "#8BE9FD";
-            white = "#cfd8dc";
+            black = "#1d202f";
+            red = "#f7768e";
+            green = "#9ece6a";
+            yellow = "#e0af68";
+            blue = "#7aa2f7";
+            magenta = "#bb9af7";
+            cyan = "#7dcfff";
+            white = "#a9b1d6";
           };
           bright = {
-            black = "#475359";
-            red = "#ff4f4d";
-            green = "#56d6ba";
-            yellow = "#c9c30e";
-            blue = "#0095c2";
-            magenta = "#9c0082";
-            cyan = "#02b7c7";
-            white = "#a7b0b5";
+            black = "#414868";
+            red = "#f7768e";
+            green = "#9ece6a";
+            yellow = "#e0af68";
+            blue = "#7aa2f7";
+            magenta = "#bb9af7";
+            cyan = "#7dcfff";
+            white = "#c0caf5";
           };
         };
       };

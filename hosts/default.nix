@@ -1,5 +1,4 @@
 { inputs
-, stateVersion
 , ...
 }:
 let
@@ -17,7 +16,7 @@ let
     in
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs hostname user stateVersion scheme homeDirectory useNixOSWallpaper wm; };
+      extraSpecialArgs = { inherit inputs hostname user scheme homeDirectory useNixOSWallpaper wm; };
       modules = [
         inputs.nur.nixosModules.nur
         inputs.sops-nix.homeManagerModules.sops
@@ -27,10 +26,11 @@ let
         inputs.nvimdots.homeManagerModules.nvimdots
         ../modules/dotfiles.nix
         ./init/nix
-        {
+        ({ config, ... }: {
           dotfilesActivation = true;
           nix.package = pkgs.nix;
-        }
+          home.stateVersion = config.home.version.release;
+        })
       ];
     };
 in

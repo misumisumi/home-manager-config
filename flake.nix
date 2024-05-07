@@ -7,7 +7,12 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    nvimdots.url = "github:misumisumi/nvimdots";
+    nvimdots = {
+      url = "github:misumisumi/nvimdots";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,9 +39,6 @@
   };
 
   outputs = inputs @ { self, flake-parts, ... }:
-    let
-      stateVersion = "24.05";
-    in
     flake-parts.lib.mkFlake { inherit inputs; }
       {
         imports = [
@@ -49,7 +51,7 @@
           };
           homeConfigurations = import ./hosts {
             inherit (inputs.nixpkgs) lib;
-            inherit inputs stateVersion;
+            inherit inputs;
           };
           overlay = self.overlays.default;
           overlays.default =
@@ -62,7 +64,7 @@
             import ./patches { inherit nixpkgs-stable; };
         };
         systems = [ "x86_64-linux" ];
-        perSystem = { config, pkgs, system, ... }: rec{
+        perSystem = { pkgs, system, ... }: {
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [

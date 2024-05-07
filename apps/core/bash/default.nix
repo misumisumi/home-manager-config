@@ -4,11 +4,12 @@
     enableCompletion = true;
     enableVteIntegration = true;
     historyIgnore = [
-      "rm"
-      "ls"
-      "pkill"
-      "kill"
-      "history"
+      "rm *"
+      "ls *"
+      "pkill *"
+      "kill *"
+      "history *"
+      "trans *"
     ];
   };
 }
