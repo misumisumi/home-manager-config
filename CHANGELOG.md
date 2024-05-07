@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.6](https://github.com/misumisumi/home-manager-config/compare/v1.1.5...v1.1.6) (2024-05-07)
+
+
+### Bug Fixes
+
+* add ignore cmd ([b3ab8ce](https://github.com/misumisumi/home-manager-config/commit/b3ab8ce679132a946f2c3011650bd53598f23c09))
+* remove manual stateVersion ([2a08d14](https://github.com/misumisumi/home-manager-config/commit/2a08d1422711b91fd7901d0c743ab3df625ffc4a))
+* **terminal:** fix color and font settings ([cb7460c](https://github.com/misumisumi/home-manager-config/commit/cb7460c498e039446749c1da1bb84f81f19f5db5))
+* **theme:** rename to `qt.platformTheme.name` ([46c9b73](https://github.com/misumisumi/home-manager-config/commit/46c9b7331a096d6e786eb7f8e500ec7aed270e8c))
+* univ ssh config ([dbfb9d4](https://github.com/misumisumi/home-manager-config/commit/dbfb9d4007fd806b24a867a6620abdf72e53ac24))
+* update nvimdots input ([30b2111](https://github.com/misumisumi/home-manager-config/commit/30b2111b66b3fb6823b480b8a0d52a0b45dc9318))
+
 ## [1.1.5](https://github.com/misumisumi/home-manager-config/compare/v1.1.4...v1.1.5) (2024-04-20)
 
 
