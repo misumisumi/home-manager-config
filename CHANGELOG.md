@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.8](https://github.com/misumisumi/home-manager-config/compare/v1.1.7...v1.1.8) (2024-05-08)
+
+
+### Bug Fixes
+
+* fix transient prompt ([ccbeb54](https://github.com/misumisumi/home-manager-config/commit/ccbeb5400b5d497b9b69b7fadf440fbf2df84212))
+
 ## [1.1.7](https://github.com/misumisumi/home-manager-config/compare/v1.1.6...v1.1.7) (2024-05-08)
 
 
