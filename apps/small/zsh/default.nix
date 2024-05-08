@@ -2,7 +2,7 @@
 #  I have some plugins problem when managin nix, so I manage zsh plugins from zinit.
 #  When you put zinit in nixpkgs, you need to create a symbolic link manually because the path to completions is different.
 #  You can watch this solution at (machines/home.nix home.activation.myActivationAction)
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
   imports = [
     ../../../modules/zinit.nix
@@ -93,15 +93,26 @@
             ];
           };
         };
-        initConfig = ''
-          # The plugin will auto execute this zvm_after_init function
-          function zvm_after_init() {
-            # Binding keys for zsh-abbr
-            if [[ $options[zle] = on ]]; then
-              eval "$(${pkgs.fzf}/bin/fzf --zsh)"
-            fi
-          }
-        '';
+        initConfig =
+          let
+            init_fzf = lib.optionalString config.programs.fzf.enable ''
+              # Binding keys for zsh-abbr
+              if [[ $options[zle] = on ]]; then
+                eval "$(${pkgs.fzf}/bin/fzf --zsh)"
+              fi
+            '';
+            # See apps/core/starship/default.nix
+            init_starship = lib.optionalString config.programs.starship.enable ''
+              enable_transientprompt
+            '';
+          in
+          ''
+            # The plugin will auto execute this zvm_after_init function
+            function zvm_after_init() {
+              ${init_fzf}
+              ${init_starship}
+            }
+          '';
       };
       shellAliases = {
         nix = "noglob nix";

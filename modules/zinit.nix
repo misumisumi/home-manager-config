@@ -57,14 +57,14 @@ with types; let
       pmodulesWithModifier = mkOption {
         type = attrsOf strListOrSingleton;
         default = { };
-        example = {
-          completion = ''
-            ice \
-            atclone"git clone --recursive https://github.com/zsh-users/zsh-completions.git external" \
-            blockf \ # use blockf to prevent any unnecessary additions to fpath, as zinit manages fpath
-            svn
-          '';
-        };
+        example = literalExpression ''
+          {
+            "wait'0a' lucid" = [
+              "directory"
+              "spectrum"
+            ];
+          }
+        '';
         description = ''
           prezto modules load with external modifier. e.g. with ice modifier, need external modules. Like history, completion.
           format is <modules> = <zinit modifier>
@@ -139,10 +139,9 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ zinit subversion ];
 
-    programs.zsh.prezto.pmodules =
-      mkIf
-        (cfg.prezto.enable && (cfg.prezto.pmodules != [ ] || cfg.prezto.pmodulesWithModifier))
-        (mkOrder 1200 [ ]);
+    programs.zsh.prezto.pmodules = mkIf
+      (cfg.prezto.enable && (cfg.prezto.pmodules != [ ] || cfg.prezto.pmodulesWithModifier))
+      (mkOrder 1200 [ ]);
     programs.zsh.initExtraBeforeCompInit = ''
       declare -A ZINIT
       ZINIT_HOME=${cfg.zinitHome}
