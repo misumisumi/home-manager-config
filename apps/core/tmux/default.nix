@@ -71,17 +71,12 @@
           extraConfig = ''
             set -g @tilish-default 'main-horizontal'
             set -g @tilish-dmenu 'on'
+            set -g @tilish-prefix 'C-a'
             bind -T tailish f resize-pane -Z
             bind C-h previous-window
             bind C-l next-window
             bind | split-window -v # 水平方向split
             bind - split-window -h # 垂直方向split
-
-            if-shell '[ $SSH_CONNECTION ]' {
-              set -g prefix2 C-a
-              set -g @tilish-prefix 'M-space'
-              bind C-a send-prefix 0
-            }
           '';
         }
       ];
@@ -98,13 +93,17 @@
       shell = "${pkgs.zsh}/bin/zsh";
 
       extraConfig = ''
+        if-shell '[ $SSH_CONNECTION ]' {
+          set -g prefix2 C-b
+          bind C-b send-prefix 0
+        }
         set -ag terminal-overrides ",xterm-256color:RGB"
         set -s focus-events on
         setw -g xterm-keys on
         set -g mouse on
 
-        setw -g window-active-style fg='#d8e1e6',bg='#1f292e'
-        setw -g window-style fg='#d8e1e6',bg='#080A0c'
+        setw -g window-active-style fg='#c0caf5',bg='#24283b'
+        setw -g window-style fg='#a9b1d6',bg='#1d202f'
 
         set -g display-panes-time 800 # slightly longer pane indicators display time
         set -g display-time 1000      # slightly longer status messages display time
@@ -135,7 +134,7 @@
 
         bind i display-panes
 
-        # relox config file
+        # reload config file
         bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
 
         run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6- | sed -e 's/[a-z]//g')"
