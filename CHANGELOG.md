@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.7](https://github.com/misumisumi/home-manager-config/compare/v1.1.6...v1.1.7) (2024-05-08)
+
+
+### Bug Fixes
+
+* **starship:** enable transient prompt in zsh ([e3bc572](https://github.com/misumisumi/home-manager-config/commit/e3bc5723e71f23dfd452c9c2004c73bd048a0192))
+* **tmux:** update tmux setting ([78a756a](https://github.com/misumisumi/home-manager-config/commit/78a756a9990b921da36dde4d81288dc51f79cd57))
+* **wezterm:** split setting ([9b757e0](https://github.com/misumisumi/home-manager-config/commit/9b757e0103c1a2c9dacaf73d5369f3a070afe243))
+
 ## [1.1.6](https://github.com/misumisumi/home-manager-config/compare/v1.1.5...v1.1.6) (2024-05-07)
 
 
