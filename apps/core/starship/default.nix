@@ -79,7 +79,6 @@ with builtins; {
               bindkey '^[[A' up-line-or-beginning-search
             fi
           }
-          enable_transientprompt
         '';
       };
     };
