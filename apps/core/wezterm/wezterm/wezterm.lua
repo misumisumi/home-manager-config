@@ -1,3 +1,4 @@
+require("tab-bar")
 local utils = require("utils")
 local appearance = require("appearance")
 local keymap = require("keymap")
