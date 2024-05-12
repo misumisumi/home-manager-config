@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/misumisumi/home-manager-config/compare/v1.1.8...v1.2.0) (2024-05-12)
+
+
+### Features
+
+* this repository is archived ([b950c1b](https://github.com/misumisumi/home-manager-config/commit/b950c1be7f2d670610b60773f7945dd23d23ca86))
+
 ## [1.1.8](https://github.com/misumisumi/home-manager-config/compare/v1.1.7...v1.1.8) (2024-05-08)
 
 
